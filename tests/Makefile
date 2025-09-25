@@ -5,35 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/25 12:15:33 by joesanto         ###   ########.fr        #
+#    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
+#    Updated: 2025/09/25 12:48:49 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libft.a
-SRCS=ft_strlen.c
-
-AR=ar crs
+NAME=
 CC=cc
-FLAGS=-Wall -Wextra -Werror
-OBJS=$(SRCS:.c=.o)
-HEADER=libft.h
+FLAGS=-Wall -Wextra -Werror -g
+EXTRA=
+HEADER=../libft.h
+LIB=ft
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(NAME).o $(LIB)
+	$(CC) $< -L.. -l$(LIB) -o $@
 
-%.o: %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
-	$(AR) $(NAME) $@
+$(NAME).o: $(NAME).c $(HEADER)
+	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I ..
+
+$(LIB):
+	make -C ..
 
 clean:
-	rm -f $(OBJS)
+	rm -f *.o
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-norm:
-	@norminette -R checkForbidenSourceHeader .
