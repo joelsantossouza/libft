@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/25 12:48:49 by joesanto         ###   ########.fr        #
+#    Updated: 2025/09/25 17:55:04 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB=ft
 all: $(NAME)
 
 $(NAME): $(NAME).o $(LIB)
-	$(CC) $< -L.. -l$(LIB) -o $@
+	$(CC) $< -latf-c -L.. -l$(LIB) -o $@
 
 $(NAME).o: $(NAME).c $(HEADER)
 	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I ..
