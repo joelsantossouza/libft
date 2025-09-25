@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/25 12:09:27 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/25 11:50:42 by joesanto          #+#    #+#             */
+/*   Updated: 2025/09/25 11:58:07 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+size_t	ft_strlen(const char *s)
+{
+	const char	*ptr;
 
-size_t	ft_strlen(const char *s);
-
-#endif
+	if (!s)
+		return (0);
+	ptr = s;
+	while (*ptr)
+		ptr++;
+	return (ptr - s);
+}
