@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 14:22:22 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:52:17 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*test_titles[] = {
 	"Size of One",
 	"Size of Five",
 	"Different Sizes"
-	"Casting Pointer to Integers",
 };
 static int	i;
 
@@ -298,7 +297,106 @@ ATF_TC_HEAD(test04, tc)
 ATF_TC_BODY(test04, tc)
 {
 	t_input	tab[] = {
-		{}
+		{"]M~", "-MH~W]cG9", LIBC_EXPECT},
+		{"@UoF|9", "nvm1h3v|cn((", LIBC_EXPECT},
+		{"9xha*2Zx:s", "*%G|12Cej~$", LIBC_EXPECT},
+		{"XN_.mG", "a;I%L`Tml", LIBC_EXPECT},
+		{"Z1!'", "j`\\`", LIBC_EXPECT},
+		{"06.nQ%Fc-", "[^f1>q]B<\\1", LIBC_EXPECT},
+		{"/^E]&CfdZ", "mc>$k-PDwR[`", LIBC_EXPECT},
+		{"W'qG* v|A", "xl0)uO4`", LIBC_EXPECT},
+		{",s*5(*", "wK:", LIBC_EXPECT},
+		{"_OX:4:WEP", "Jjcj'", LIBC_EXPECT},
+		{"^w/3dQ3'O+\\=", "G>Z;$-bQB", LIBC_EXPECT},
+		{"'Oc/", "T&MB7r=C4O", LIBC_EXPECT},
+		{"4yF^4S6z", "DWQz$z7q}#$", LIBC_EXPECT},
+		{"WY#($=l1", ")S4w(lM8", LIBC_EXPECT},
+		{"fTm", "U %K1mFn", LIBC_EXPECT},
+		{"9Rk_j5M", "@:d6PHaNa<F", LIBC_EXPECT},
+		{"vqe", "y{)3rb", LIBC_EXPECT},
+		{"rZj", "B1pG-`tIM9", LIBC_EXPECT},
+		{"H5r&c624\\zL'", "{7_1%|%!V<*", LIBC_EXPECT},
+		{"2VRD", "0%!ln/", LIBC_EXPECT},
+		{"9|j", "}WlO}2", LIBC_EXPECT},
+		{")W5kb", "|j_/~CXez{", LIBC_EXPECT},
+		{"SVRivE25Ea{0", "q%UXrl}|\\k", LIBC_EXPECT},
+		{"7wI`KB/ize[q", "yV1%Nr", LIBC_EXPECT},
+		{"es@", "dq !)7RB", LIBC_EXPECT},
+		{"1p'Cb7MjAd?", "h;W<-xBj", LIBC_EXPECT},
+		{"q2#^WlnC", "PSax=", LIBC_EXPECT},
+		{"U+:<F;5%", "M}Z+}\\b", LIBC_EXPECT},
+		{"Xhm\\sg", ":b4@L~", LIBC_EXPECT},
+		{"pei{EzLQ!", "{oW.*v", LIBC_EXPECT},
+		{"6o'W[bgQu", "c];lkSa@oxc'", LIBC_EXPECT},
+		{"l+3e$:*AZ^g", "PY%7;q", LIBC_EXPECT},
+		{"f1J~", "do\\p7f#F[", LIBC_EXPECT},
+		{":MJ/:_8!7||", "HeEFydCB+`/", LIBC_EXPECT},
+		{"qZLH", "u Lg?s52P", LIBC_EXPECT},
+		{"H_`8C", "aevg#l\\:(Vg", LIBC_EXPECT},
+		{")\\w$?", "WyPo nhd!*<7", LIBC_EXPECT},
+		{"rfjG4`djoF", "<8l|7", LIBC_EXPECT},
+		{"NX|9FQSOaib", "wqqo2R", LIBC_EXPECT},
+		{"XrLj,5G#6", "]VZ~#M79", LIBC_EXPECT},
+		{"ikwR", "pkm^`PX@?", LIBC_EXPECT},
+		{"\\Q^M|Y K%.&", "&]]5", LIBC_EXPECT},
+		{"1]KE3kI(", "n)h:26>!Z", LIBC_EXPECT},
+		{"grM+uQ:", "#Pf_?d!YD", LIBC_EXPECT},
+		{"kCqqis{[|P", "gs_c", LIBC_EXPECT},
+		{"+lR3L}", "+Y}o?C", LIBC_EXPECT},
+		{"1jbP", "0R>F", LIBC_EXPECT},
+		{"sr;9h", "C_)5?1U`", LIBC_EXPECT},
+		{"KXG8K;>K", "srL)fn", LIBC_EXPECT},
+		{"}-LU(>2", "NsQ /eAbN5J`", LIBC_EXPECT},
+		{"L4 KA", "~4uj*u-?)", LIBC_EXPECT},
+		{"IUm?qrF7", "PE*l", LIBC_EXPECT},
+		{"$ID/E", "stU2X?b*l/", LIBC_EXPECT},
+		{"WDju8;z,", "E6[u6Q|G3M", LIBC_EXPECT},
+		{"piNa~.{#", "0^6rl-,K.^*", LIBC_EXPECT},
+		{"/GfuZuy", "dW.", LIBC_EXPECT},
+		{"2BQp2", "C,aA!", LIBC_EXPECT},
+		{"l'Qd", "3~S0BX9)_K4", LIBC_EXPECT},
+		{"Yzg!6PL+oI", "orgd=l_ tb}", LIBC_EXPECT},
+		{"iK|", "(]q\\", LIBC_EXPECT},
+		{"-y+ !%", "`Q{QarcIc7dm", LIBC_EXPECT},
+		{"<(YW", "_:W2", LIBC_EXPECT},
+		{"*Kao+", "5 K", LIBC_EXPECT},
+		{"K`GXL6r", ":d&~$A(qbL,H", LIBC_EXPECT},
+		{"e-.", "'W ^`G7", LIBC_EXPECT},
+		{"~K4/xSyE@aJ", "|iO*YVIj!0}", LIBC_EXPECT},
+		{")5Mws11", "(SJ9J", LIBC_EXPECT},
+		{"5|h]A[f^m.z", "kR8dP)/M", LIBC_EXPECT},
+		{"<}Oez", "!'*8B&3e8", LIBC_EXPECT},
+		{"!aw0n", "kj-R", LIBC_EXPECT},
+		{"XT[V(=eyX1=", "^,!Pv", LIBC_EXPECT},
+		{"q*24s", "EYX*@rB", LIBC_EXPECT},
+		{"]k.ZOZ2YgMB%", "V HK^X3>", LIBC_EXPECT},
+		{"g}S'O%vJBL5", "|Ok2|/`D", LIBC_EXPECT},
+		{"Sxb", "g~W6hT!n!q<J", LIBC_EXPECT},
+		{"\\sTTT62", "rkj|kPq1&{S", LIBC_EXPECT},
+		{"Nbla{FzX", "\\{gj7", LIBC_EXPECT},
+		{"nicC`WW5", "eAqO+hq!IH", LIBC_EXPECT},
+		{">[7?#}a?w'-6", "K:Ep/", LIBC_EXPECT},
+		{"iE9w*cqG", "GZHWw", LIBC_EXPECT},
+		{"i)&$dv=|", "L`h", LIBC_EXPECT},
+		{"H#HDR", "vm*", LIBC_EXPECT},
+		{"rX?(T%X3k", "crk2O>w4", LIBC_EXPECT},
+		{"OOyQ|}8WcO", "7h+~)(.", LIBC_EXPECT},
+		{"aM6A", "n94M", LIBC_EXPECT},
+		{"*B+tt", "aNE~", LIBC_EXPECT},
+		{"baF&;kv`", "?H8;Fi1@,", LIBC_EXPECT},
+		{"t-voX}BRK2]P", "6w^E0nk+o", LIBC_EXPECT},
+		{"MHYl+OlsSkZ", "$O)Lp%1(^", LIBC_EXPECT},
+		{"c.7MMheMc", "W6ucZu1qPrn", LIBC_EXPECT},
+		{"`gr2|", "!|6i", LIBC_EXPECT},
+		{"a82kS+L4", "^vzg`iA", LIBC_EXPECT},
+		{">}%s", "eX,I", LIBC_EXPECT},
+		{"ns[^a(x@.t", "?T=y#gfk!a ", LIBC_EXPECT},
+		{"9H8p=q1", "z9}@!6q", LIBC_EXPECT},
+		{">flASJ-3", "r(x+9t!Z::B", LIBC_EXPECT},
+		{"Q^b0m5v)Q", "q3P/P:R[g<cY", LIBC_EXPECT},
+		{"gd'u", "JEk8]vi:", LIBC_EXPECT},
+		{"|SP*-*|", "ke>EJ^#^ZZ8", LIBC_EXPECT},
+		{"H3LB`ITpk", " r$?*", LIBC_EXPECT},
 	};
 
 	i = 4;
@@ -312,6 +410,7 @@ ATF_TP_ADD_TCS(tp)
 	ATF_TP_ADD_TC(tp, test01);
 	ATF_TP_ADD_TC(tp, test02);
 	ATF_TP_ADD_TC(tp, test03);
+	ATF_TP_ADD_TC(tp, test04);
 
 	return (atf_no_error());
 }
