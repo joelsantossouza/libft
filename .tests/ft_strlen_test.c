@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 12:55:34 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/25 21:13:51 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:14:26 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
 
+static int	i;
+
 void	test(char *strs[], int size, size_t expected)
 {
-	static int	i;
 	size_t		output;
 	char		*color;
 
-	printf("---> test%02d (Expected=%lu)\n", i++, expected);
+	printf("---> test%02d (Expected=%lu)\n", i, expected);
 	while (size--)
 	{
 		output = ft_strlen(strs[size]);
@@ -51,6 +52,7 @@ ATF_TC_BODY(test00, tc)
 	char	*test00[] = {"", 0, "\0"};
 	size_t	expected = 0;
 
+	i = 0;
 	test(test00, NELEM(test00, char *), expected);
 }
 
@@ -65,6 +67,7 @@ ATF_TC_BODY(test01, tc)
 	char	*test01[] = {"a", "\n", "\001", "\177", "\x0a", "\200", "", "", "Z"};
 	size_t	expected = 1;
 
+	i = 1;
 	test(test01, NELEM(test01, char *), expected);
 }
 
@@ -85,26 +88,28 @@ ATF_TC_BODY(test02, tc)
 	};
 	size_t	expected = 32;
 
+	i = 2;
 	test(test02, NELEM(test02, char *), expected);
 }
 
 // BONUS TEST
 #ifdef LONG_STR
 # include <string.h>
-	ATF_TC(test03);
-	ATF_TC_HEAD(test03, tc)
-	{
-		atf_tc_set_md_var(tc, "descr", "String of long size");
-	}
-	ATF_TC_BODY(test03, tc)
-	{
-		char	*test03[] = {
-			LONG_STR
-		};
-		size_t	expected = strlen(LONG_STR);
+ATF_TC(test03);
+ATF_TC_HEAD(test03, tc)
+{
+	atf_tc_set_md_var(tc, "descr", "String of long size");
+}
+ATF_TC_BODY(test03, tc)
+{
+	char	*test03[] = {
+		LONG_STR
+	};
+	size_t	expected = strlen(LONG_STR);
 
-		test(test03, NELEM(test03, char *), expected);
-	}
+	i = 3
+	test(test03, NELEM(test03, char *), expected);
+}
 #endif
 
 // TEST PROGRAM
