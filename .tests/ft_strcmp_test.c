@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 10:00:19 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 10:25:04 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdio.h>
 
 #define NELEM(tab) (sizeof(tab) / sizeof(t_input))
-#define GREEN
-#define RED
-#define RESET_COLOR
+#define GREEN		"\e[0;32m"
+#define RED			"\e[0;31m"
+#define RESET_COLOR "\e[0m"
 
 /*
 	STRUCTURE -->
@@ -34,6 +34,7 @@ char	*test_titles[] = {
 	"Out of Ascii Range",
 	"Long strings"
 };
+static int	i;
 
 typedef struct s_input
 {
@@ -43,9 +44,9 @@ typedef struct s_input
 
 void	test(t_input tab[], int size)
 {
-	static int	i;
 	int			expected;
 	int			output;
+	char		*color;
 
 	printf("<test%02d> %s\n\n----------\n", i, test_titles[i]);
 	while (size--)
@@ -54,20 +55,25 @@ void	test(t_input tab[], int size)
 		output = ft_strcmp(tab[size].s1, tab[size].s2);
 		color = output == expected ? GREEN : RED;
 
-		printf("%s", COLOR);
+		printf("%s", color);
 		printf("Input:   \t\"%s\"\t-\t\"%s\"\n", tab[size].s1, tab[size].s2);
 		printf("Expected:\t%3d\n", expected);
-		printf("Output:  \t%3d\n", output);
+		printf("Output:  \t%3d\n\n", output);
 		printf("%s", RESET_COLOR);
 
-		printf("\n----------\n");
+		ATF_CHECK_EQ(expected, output);
+		printf("----------\n");
 	}
 	i++;
 }
 
 // TEST 00 --> EMPTY AND NULLS
 ATF_TC(test00);
-ATF_TC_BODY(tes00, tc)
+ATF_TC_HEAD(test00, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[i]);
+}
+ATF_TC_BODY(test00, tc)
 {
 	t_input tab[] = {
 		{"", ""}
