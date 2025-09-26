@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 19:44:26 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 20:19:43 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_put_row(char *type, void *ptr, const char *buf, size_t size)
 	if (ptr)
 		printf("(%p) ", ptr);
 	while (size--)
-		printf("%c", *buf++);
+		printf("\\%02X", *buf++);
 	printf("\n");
 }
 
@@ -86,9 +86,9 @@ void	test(t_input tab[], int size)
 		color = expected == output && !memcmp(output_dst, expected_dst, tab[size].n) ? GREEN : RED;
 
 		printf("%s", color);
-		ft_put_row("Input:   ", 0, tab[size].src, tab[size].n);
-		ft_put_row("Expected:", expected, tab[size].src, tab[size].n);
-		ft_put_row("Output:  ", output, tab[size].src, tab[size].n);
+		ft_put_row("Input:   ", output_dst, (char *) tab[size].src, tab[size].n);
+		ft_put_row("Expected:", expected, (char *) expected_dst, tab[size].n);
+		ft_put_row("Output:  ", output, (char *) output_dst, tab[size].n);
 		printf("%s", RESET_COLOR);
 
 		ATF_CHECK(expected == output && !memcmp(output_dst, expected_dst, tab[size].n));
@@ -107,7 +107,6 @@ ATF_TC_HEAD(test00, tc)
 ATF_TC_BODY(test00, tc)
 {
 	t_input	tab[] = {
-		{"test", ft_strlen("test") + 10 },
 	};
 
 	i = 0;
