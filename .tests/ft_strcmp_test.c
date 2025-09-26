@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 13:16:29 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:40:54 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*test_titles[] = {
 	"Size of Five",
 	"Non Printable",
 	"Out of Ascii Range",
+	"Casting Pointer to Integers",
 	"Long strings",
 };
 static int	i;
@@ -121,8 +122,15 @@ ATF_TC_HEAD(test01, tc)
 }
 ATF_TC_BODY(test01, tc)
 {
+	char	neg = -1;
 	t_input	tab[] = {
 		{0, 0, 0},
+		{"", 0, 1},
+		{0, "", -1},
+		{"joel", 0, 1},
+		{0, "joel", -1},
+		{&neg, 0, 1},
+		{0, &neg, -1},
 	};
 
 	i = 1;
