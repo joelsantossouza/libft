@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/26 11:41:30 by joesanto         ###   ########.fr        #
+#    Updated: 2025/09/26 11:45:16 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS=-Wall -Wextra -Werror -g
 EXTRA=
 HEADER=../libft.h
 LIB=ft
-ALL_TESTS=$(wildcard *_test.c)
+ALL_TESTS=$(wildcard *_test)
 
 all: $(TEST)
 
