@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 13:40:54 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:54:19 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,51 @@ ATF_TC_BODY(test01, tc)
 	test(tab, NELEM(tab), MY_EXPECT);
 }
 
+// TEST 02 --> Size of One
+ATF_TC(test02);
+ATF_TC_HEAD(test02, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[2]);
+}
+ATF_TC_BODY(test02, tc)
+{
+	char	neg = -1;
+	char	overflow = (char)9518755619835756;
+	t_input	tab[] = {
+		{"1", "1", LIBC_EXPECT},
+		{"2", "1", LIBC_EXPECT},
+		{"1", "2", LIBC_EXPECT},
+		{"2", "2", LIBC_EXPECT},
+		{"A", "a", LIBC_EXPECT},
+		{"a", "a", LIBC_EXPECT},
+		{"a", "A", LIBC_EXPECT},
+		{"a", "Z", LIBC_EXPECT},
+		{"\300", "\300", LIBC_EXPECT},
+		{"\300", "\000", LIBC_EXPECT},
+		{"\000", "\300", LIBC_EXPECT},
+		{"\x99", "\x90", LIBC_EXPECT},
+		{"\x90", "\x99", LIBC_EXPECT},
+		{"", "", LIBC_EXPECT},
+		{"0", "", LIBC_EXPECT},
+		{"", "0", LIBC_EXPECT},
+		{"\n", "\n", LIBC_EXPECT},
+		{"\\", "\\", LIBC_EXPECT},
+		{"\e", "\e", LIBC_EXPECT},
+		{"\a", "\b", LIBC_EXPECT},
+		{&neg, &neg, LIBC_EXPECT},
+		{&overflow, &overflow, LIBC_EXPECT},
+	};
+
+	i = 2;
+	test(tab, NELEM(tab), LIBC_EXPECT);
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
 	ATF_TP_ADD_TC(tp, test01);
+	ATF_TP_ADD_TC(tp, test02);
 
 	return (atf_no_error());
 }
