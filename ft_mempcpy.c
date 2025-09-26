@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_mempcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 18:07:51 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/26 17:48:26 by joesanto          #+#    #+#             */
+/*   Updated: 2025/09/26 19:17:01 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+void	*ft_mempcpy(void *dest, const void *src, size_t n)
+{
+	char		*pdest;
+	const char	*psrc;
 
-size_t	ft_strlen(const char *s);
-int		ft_strcmp(const char *s1, const char *s2);
-void	*ft_mempcpy(void *dest, const void *src, size_t n);
-
-#endif
+	pdest = (char *) dest;
+	psrc = (const char *) src;
+	if (pdest && psrc)
+		while (n--)
+			*pdest++ = *psrc++;
+	return ((void *) pdest);
+}
