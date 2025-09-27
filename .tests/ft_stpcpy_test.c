@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/27 17:22:26 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/27 17:58:27 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,96 @@ ATF_TC_BODY(test01, tc)
 	test(tab, NELEM(tab));
 }
 
+// TEST 02 --> SIZE OF ONE
+ATF_TC(test02);
+ATF_TC_HEAD(test02, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[2]);
+}
+ATF_TC_BODY(test02, tc)
+{
+	char	neg = -1;
+	t_input	tab[] = {
+		{"A", 0},
+		{"A", 1},
+		{"A", 2},
+		{"A", 4},
+		{"A", 10},
+		{"A", 100},
+		{"A", 1000},
+		{"", 0},
+		{"", 1},
+		{"", 2},
+		{"", 4},
+		{"", 10},
+		{"", 100},
+		{"", 1000},
+		{"\232", 0},
+		{"\232", 1},
+		{"\232", 2},
+		{"\232", 4},
+		{"\232", 10},
+		{"\232", 100},
+		{"\232", 1000},
+		{&neg, 0},
+		{&neg, 1},
+		{&neg, 2},
+		{&neg, 4},
+		{&neg, 10},
+		{&neg, 100},
+		{&neg, 1000},
+	};
+
+	i = 2;
+	test(tab, NELEM(tab));
+}
+
+// TEST 03 --> SIZE OF FIVE
+ATF_TC(test03);
+ATF_TC_HEAD(test03, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[3]);
+}
+ATF_TC_BODY(test03, tc)
+{
+	t_input	tab[] = {
+		{"N#r{)", 0},
+		{"f(90W", 1},
+		{"Xw=!m", 2},
+		{"b8/Z/", 4},
+		{"Rm_;6", 10},
+		{"qgRW_", 100},
+		{"y9:rJ", 1000},
+		{"%wjqG", 100000},
+		{"]uE$e", 0},
+		{".r]$E", 1},
+		{"9q]w&", 2},
+		{"KF#[]", 4},
+		{"*ei1%", 10},
+		{"hrA&a", 100},
+		{"B!W7[", 1000},
+		{"Xv!rt", 100000},
+		{"Ud&Ug", 0},
+		{"Sh]5+", 1},
+		{"3u=L$", 2},
+		{"cDj4v", 4},
+		{"S4R;E", 10},
+		{"BT__=", 100},
+		{"e#CSM", 1000},
+		{"8L;6{", 100000},
+	};
+
+	i = 3;
+	test(tab, NELEM(tab));
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
 	ATF_TP_ADD_TC(tp, test01);
+	ATF_TP_ADD_TC(tp, test02);
+	ATF_TP_ADD_TC(tp, test03);
 
 	return (atf_no_error());
 }
