@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/27 11:51:15 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/27 12:08:28 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*test_titles[] = {
 	"String Data",
 	"Integer Data",
 	"Float Data",
-	"Struct Data",
+	"Struct Data and Arrays",
 };
 static int	i;
 
@@ -268,6 +268,32 @@ ATF_TC_BODY(test04, tc)
 	test(tab, NELEM(tab));
 }
 
+// TEST 05 --> STRUCTURE DATA AND ARRAYS
+ATF_TC(test05);
+ATF_TC_HEAD(test05, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[5]);
+}
+ATF_TC_BODY(test05, tc)
+{
+	t_input	data1 = {"This is a Test", 666};
+	t_input	data2 = {0, -666};
+	int		array_int[] = {1, 2, 3, 4, 5};
+	float	array_float[] = {0.1, -234.234, 99999.1, 23541412.412424};
+	t_input	array_inputs[] = {data1, data2};
+
+	t_input	tab[] = {
+		{&data1, sizeof(data1)},
+		{&data2, sizeof(data2)},
+		{array_int, sizeof(array_int)},
+		{array_float, sizeof(array_float)},
+		{array_inputs, sizeof(array_inputs)},
+	};
+
+	i = 5;
+	test(tab, NELEM(tab));
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
@@ -276,6 +302,7 @@ ATF_TP_ADD_TCS(tp)
 	ATF_TP_ADD_TC(tp, test02);
 	ATF_TP_ADD_TC(tp, test03);
 	ATF_TP_ADD_TC(tp, test04);
+	ATF_TP_ADD_TC(tp, test05);
 
 	return (atf_no_error());
 }
