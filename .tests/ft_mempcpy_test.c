@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/27 12:08:28 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:30:21 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ typedef struct s_input
 	const void	*src;
 	size_t		n;
 }	t_input;
-
-typedef struct s_expect
-{
-	const void	*src;
-	size_t		n;
-	void		*expect;
-}	t_expect;
 
 void	ft_put_row(char *type, void *ptr, const char *buf, size_t size)
 {
