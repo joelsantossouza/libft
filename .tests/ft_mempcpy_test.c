@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/27 11:35:48 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/27 11:51:15 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ ATF_TC_BODY(test03, tc)
 	test(tab, NELEM(tab));
 }
 
-// TEST 04 --> INTEGER DATA
+// TEST 04 --> FLOAT DATA
 ATF_TC(test04);
 ATF_TC_HEAD(test04, tc)
 {
@@ -243,30 +243,30 @@ ATF_TC_HEAD(test04, tc)
 ATF_TC_BODY(test04, tc)
 {
 	float	n1 = 0;
-	float	n2 = 2;
-	float	n3 = -1;
-	int	n4 = -2147483648;
-	int	n5 = (int) -2147483649;
-	int	n6 = 2147483648;
-	int	n7 = 2147483647;
-	int	n8 = 2147483649;
-	int	n9 = (int) 872309587230598LU;
+	float	n2 = 0.1;
+	float	n3 = -0.1;
+	float	n4 = -0.203489;
+	float	n5 = -340282346638528859811704183484516925440.0000000000000000;
+	float	n6 = 340282346638528859811704183484516925440.0000000000000000;
+	float	n7 = 340282346638528859811704183484516925449082374.0000000000000000;
+	float	n8 = 909857.2394;
+	float	n9 = 340282346638528859811704183484516925440.9999999999999999999999;
 
 	t_input	tab[] = {
-		{&n1, sizeof(int)},
-		{&n2, sizeof(int) - 3},
-		{&n3, sizeof(int) - 2},
-		{&n4, sizeof(int) + 30},
-		{&n5, sizeof(int)},
-		{&n6, sizeof(int)},
-		{&n7, sizeof(int)},
-		{&n8, sizeof(int)},
-		{&n9, sizeof(int)},
+		{&n1, sizeof(float)},
+		{&n2, sizeof(float) - 3},
+		{&n3, sizeof(float) - 2},
+		{&n4, sizeof(float) + 30},
+		{&n5, sizeof(float)},
+		{&n6, sizeof(float)},
+		{&n7, sizeof(float)},
+		{&n8, sizeof(float)},
+		{&n9, sizeof(float)},
 	};
 
-	i = 3;
+	i = 4;
 	test(tab, NELEM(tab));
-
+}
 
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
@@ -275,6 +275,7 @@ ATF_TP_ADD_TCS(tp)
 	ATF_TP_ADD_TC(tp, test01);
 	ATF_TP_ADD_TC(tp, test02);
 	ATF_TP_ADD_TC(tp, test03);
+	ATF_TP_ADD_TC(tp, test04);
 
 	return (atf_no_error());
 }
