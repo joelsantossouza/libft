@@ -65,3 +65,7 @@ end
 if fs.exists("ft_isascii_test") then
 	atf_test_program{name="ft_isascii_test"}
 end
+
+if fs.exists("ft_isprint_test") then
+	atf_test_program{name="ft_isprint_test"}
+end
