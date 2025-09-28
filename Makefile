@@ -6,12 +6,13 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/28 17:18:18 by joesanto         ###   ########.fr        #
+#    Updated: 2025/09/28 17:58:35 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libft.a
-SRCS=ft_strlen.c ft_strnlen.c ft_strcmp.c ft_mempcpy.c ft_memcpy.c ft_stpcpy.c ft_strcpy.c ft_strlcpy.c
+SRCS=ft_strlen.c ft_strnlen.c ft_strcmp.c ft_mempcpy.c ft_memcpy.c ft_stpcpy.c ft_strcpy.c ft_strlcpy.c \
+ft_strlcat.c
 
 AR=ar crs
 CC=cc
