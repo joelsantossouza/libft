@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 12:16:16 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:32:40 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #define RED			"\e[0;31m"
 #define GREEN		"\e[0;32m"
 #define RESET_COLOR	"\e[0m"
+#define TEST_NULLS	1<<0
 
 char	*tests_titles[] = {
 	"Null Strings",
@@ -77,6 +78,63 @@ void	test(t_input tab[], size_t size)
 	}
 }
 
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
+{
+	if ((!s1 && !s2) || !n)
+		return (0);
+	if (!s1)
+		return (-1);
+	if (!s2)
+		return (1);
+	while (*s1 == *s2 && *s1 && n-- > 1)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+
+void	test_nulls(t_input tab[], size_t size, int flags)
+{
+	char	*expected_dst;
+	char	*myown_dst;
+	size_t	expected_ret;
+	size_t	myown_ret;
+	char	*color;
+
+	printf("{My Own Test}\n");
+	while (size--)
+	{
+		if (flags & TEST_NULLS)
+			expected_dst = myown_dst = 0;
+		else
+		{
+			expected_dst = malloc(tab[size].dst_size);
+			if (!expected_dst)
+				return ;
+			myown_dst = malloc(tab[size].dst_size);
+			if (!myown_dst)
+				return (free(expected_dst));
+		}
+		ft_memcpy(expected_dst, myown_dst, tab[size].dst_size);
+		expected_ret = ft_strlen(tab[size].src);
+		myown_ret = ft_strlcpy(myown_dst, tab[size].src, tab[size].size);
+		color = expected_ret == myown_ret && !ft_strncmp(expected_dst, myown_dst, tab[size].dst_size) ? GREEN : RED;
+
+		printf("%s", color);
+		printf("Input:   \t%s\n", tab[size].src);
+		printf("Expected:\t(%lu) %.*s\n", expected_ret, (int)tab[size].dst_size, expected_dst);
+		printf("Output:  \t(%lu) %.*s\n", myown_ret, (int)tab[size].dst_size, myown_dst);
+		printf("%s", RESET_COLOR);
+
+		ATF_CHECK(expected_ret == myown_ret && !ft_strncmp(expected_dst, myown_dst, tab[size].dst_size));
+		printf("----------\n");
+
+		free(expected_dst);
+		free(myown_dst);
+	}
+}
+
 // TEST 00 --> NULL STRINGS
 ATF_TC(test00);
 ATF_TC_HEAD(test00, tc)
@@ -85,12 +143,23 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	t_input	tab[] = {
+	t_input	tab1[] = {
 		{0, 0, 0},
+		{1, 0, 0},
+		{0, 0, 1},
+		{1, 0, 1},
+		{1, 0, 10},
+		{10, 0, 10},
+		{10, 0, 1},
+		{100, 0, 10},
+		{10, 0, 100},
+		{100, 0, 100},
 	};
 
 	i = 0;
-	test(tab, NELEM(tab));
+	printf("\n<test%02d> %s\n", i, tests_titles[i]);
+	test_nulls(tab1, NELEM(tab1), 0);
+	test_nulls(tab1, NELEM(tab1), TEST_NULLS);
 }
 
 // TEST PROGRAM
