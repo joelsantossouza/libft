@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 13:39:09 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:53:14 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	test(t_input tab[], size_t size)
 			return (free(expected_dst));
 		expected_ret = strlcpy(expected_dst, tab[size].src, tab[size].size);
 		myown_ret = ft_strlcpy(myown_dst, tab[size].src, tab[size].size);
-		color = expected_ret == myown_ret && strcmp(expected_dst, myown_dst) ? GREEN : RED;
+		color = expected_ret == myown_ret && !strcmp(expected_dst, myown_dst) ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t%s\n", tab[size].src);
@@ -70,7 +70,7 @@ void	test(t_input tab[], size_t size)
 		printf("Output:  \t(%lu) %s\n", myown_ret, myown_dst);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(expected_ret == myown_ret && strcmp(expected_dst, myown_dst));
+		ATF_CHECK(expected_ret == myown_ret && !strcmp(expected_dst, myown_dst));
 		printf("----------\n");
 
 		free(expected_dst);
@@ -175,10 +175,38 @@ ATF_TC_BODY(test00, tc)
 	test_nulls(tab2, NELEM(tab2), TEST_NULLS);
 }
 
+// TEST 01 --> EMPTY STRINGS
+ATF_TC(test01);
+ATF_TC_HEAD(test01, tc)
+{
+	atf_tc_set_md_var(tc, "descr", tests_titles[1]);
+}
+ATF_TC_BODY(test01, tc)
+{
+	t_input	tab[] = {
+		{0, "", 0},
+		{1, "", 0},
+		{1, "", 1},
+		{0, "", 1},
+		{10, "", 1},
+		{10, "", 10},
+		{1, "", 10},
+		{100, "", 10},
+		{100, "", 100},
+		{10, "", 100},
+		{10000, "", 100},
+		{10000, "", 10000},
+	};
+
+	i = 1;
+	test(tab, NELEM(tab));
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
+	ATF_TP_ADD_TC(tp, test01);
 	
 	return (atf_no_error());
 }

@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:07:54 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 13:17:13 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 14:14:27 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	if (ptr)
 	{
 		if (dst && size)
+		{
 			while (size-- > 1 && *ptr)
 				*dst++ = *ptr++;
+			*dst = 0;
+		}
 		while (*ptr)
 			ptr++;
 	}
