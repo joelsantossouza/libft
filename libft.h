@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 20:38:30 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 20:44:39 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_isupper(int c);
 int		ft_isspace(int c);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
+int		ft_isalnum(int c);
 size_t	ft_strlen(const char *s);
 size_t	ft_strnlen(const char *s, size_t maxlen);
 int		ft_strcmp(const char *s1, const char *s2);
