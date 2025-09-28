@@ -45,3 +45,7 @@ end
 if fs.exists("ft_isupper_test") then
 	atf_test_program{name="ft_isupper_test"}
 end
+
+if fs.exists("ft_isspace_test") then
+	atf_test_program{name="ft_isspace_test"}
+end
