@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 13:53:14 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 14:31:30 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void	test(t_input tab[], size_t size)
 			return (free(expected_dst));
 		expected_ret = strlcpy(expected_dst, tab[size].src, tab[size].size);
 		myown_ret = ft_strlcpy(myown_dst, tab[size].src, tab[size].size);
-		color = expected_ret == myown_ret && !strcmp(expected_dst, myown_dst) ? GREEN : RED;
+		color = expected_ret == myown_ret && !strncmp(expected_dst, myown_dst, tab[size].size) ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t%s\n", tab[size].src);
-		printf("Expected:\t(%lu) %s\n", expected_ret, expected_dst);
-		printf("Output:  \t(%lu) %s\n", myown_ret, myown_dst);
+		printf("Expected:\t(%lu) %.*s\n", expected_ret, (int) tab[size].size, expected_dst);
+		printf("Output:  \t(%lu) %.*s\n", myown_ret, (int) tab[size].size, myown_dst);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(expected_ret == myown_ret && !strcmp(expected_dst, myown_dst));
+		ATF_CHECK(expected_ret == myown_ret && !strncmp(expected_dst, myown_dst, tab[size].size));
 		printf("----------\n");
 
 		free(expected_dst);
