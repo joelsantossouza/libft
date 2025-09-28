@@ -73,3 +73,7 @@ end
 if fs.exists("ft_toupper_test") then
 	atf_test_program{name="ft_toupper_test"}
 end
+
+if fs.exists("ft_tolower_test") then
+	atf_test_program{name="ft_tolower_test"}
+end
