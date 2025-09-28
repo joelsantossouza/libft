@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 15:42:19 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 17:02:04 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ char	*tests_titles[] = {
 	"Big Strings",
 	"Dest Bigger Than Src",
 	"Src Bigger than Dest",
-	"Size bigger Than Dest",
-	"Dest bigger Than Size",
 };
 static int	i;
 
