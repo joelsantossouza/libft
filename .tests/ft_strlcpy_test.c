@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 13:32:40 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:39:09 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,24 @@ ATF_TC_BODY(test00, tc)
 		{10, 0, 100},
 		{100, 0, 100},
 	};
+	t_input	tab2[] = {
+		{0, "f8&KqZpL#9", 0},
+		{1, "TgY7w^pLk@2zR", 0},
+		{0, "aP3$LmNzX!qRvT1oJ", 1},
+		{1, "xV8m#QwErTzYpLd9FhGjK", 1},
+		{1, "Zr7@qLpXyNwVt8sBmCkJdHf", 10},
+		{10, "mP2&nXvLqWtR9zYgFhJbCsTk4o", 10},
+		{10, "cL8$XpQzNrVwTgHfYjMkSaBdUiKo", 1},
+		{100, "hT1@qLpXyNwVt8sBmCkJdHfZr7pRvGjF", 10},
+		{10, "pR4#nXvLqWtR9zYgFhJbCsTkLmQaWmZoXt", 100},
+		{100, "jK9^xLpQwErTzYpLd9FhGjKmNaSbDcVtYwXr", 100},
+	};
 
 	i = 0;
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	test_nulls(tab1, NELEM(tab1), 0);
 	test_nulls(tab1, NELEM(tab1), TEST_NULLS);
+	test_nulls(tab2, NELEM(tab2), TEST_NULLS);
 }
 
 // TEST PROGRAM
