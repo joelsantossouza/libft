@@ -53,3 +53,7 @@ end
 if fs.exists("ft_isdigit_test") then
 	atf_test_program{name="ft_isdigit_test"}
 end
+
+if fs.exists("ft_isalpha_test") then
+	atf_test_program{name="ft_isalpha_test"}
+end
