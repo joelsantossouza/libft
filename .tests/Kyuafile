@@ -25,3 +25,7 @@ end
 if fs.exists("ft_strcpy_test") then
 	atf_test_program{name="ft_strcpy_test"}
 end
+
+if fs.exists("ft_strlcpy_test") then
+	atf_test_program{name="ft_strlcpy_test"}
+end
