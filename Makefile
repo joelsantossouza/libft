@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/27 19:25:01 by joesanto         ###   ########.fr        #
+#    Updated: 2025/09/28 10:20:35 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,4 +36,4 @@ fclean: clean
 re: fclean all
 
 norm:
-	@norminette -R checkForbidenSourceHeader .
+	norminette -R checkForbidenSourceHeader .
