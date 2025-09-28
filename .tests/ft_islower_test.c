@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 19:51:16 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/28 20:14:46 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	test(int min, int max)
 
 	while (min <= max)
 	{
-		expected = islower((char) min);
-		output = ft_islower(min);
+		expected = islower(min) != 0;
+		output = ft_islower(min) != 0;
 		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
@@ -51,7 +51,7 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	test(-1, 100);
+	test(-100, 10000);
 }
 ATF_TP_ADD_TCS(tp)
 {
