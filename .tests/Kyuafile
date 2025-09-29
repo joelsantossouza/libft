@@ -81,3 +81,7 @@ end
 if fs.exists("ft_strchr_test") then
 	atf_test_program{name="ft_strchr_test"}
 end
+
+if fs.exists("ft_strrchr_test") then
+	atf_test_program{name="ft_strrchr_test"}
+end
