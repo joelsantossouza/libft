@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:29:19 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:41:33 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <atf-c/tc.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <bsd/string.h>
+#include <string.h>
 #include <atf-c.h>
 
 #define NELEM(tab) (sizeof(tab) / sizeof(t_input))
@@ -38,6 +38,37 @@ typedef struct s_input
 	const char	*big;
 	const char	*little;
 }	t_input;
+
+char* strnstr 	( 	const char *  	s, const char *  	find, size_t  	slen) 	
+{
+	char c;
+
+	if((c = *find++) != '\0')
+	{
+		size_t len = strlen(find);
+		do
+		{
+			char sc;
+			do
+			{
+				if(slen-- < 1 || (sc = *s++) == '\0')
+				{
+					{
+						return (NULL);
+					}
+				}
+			} while(sc != c);
+			if(len > slen)
+			{
+				{
+					return (NULL);
+				}
+			}
+		} while(strncmp(s, find, len) != 0);
+		s--;
+	}
+	return ((char*)(unsigned int *)s);
+}
 
 void	test(t_input tab[], size_t size)
 {
