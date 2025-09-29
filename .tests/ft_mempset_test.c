@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 12:09:44 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 12:15:58 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	test_expect(t_input tab[], int size, int flags)
 				if (!output_dst)
 					return ;
 			}
-			expected = output_dst;
+			expected = !output_dst ? 0 : output_dst + tab[size].n;
 			output = ft_mempset(output_dst, min, tab[size].n);
 			color = expected == output ? GREEN : RED;
 
