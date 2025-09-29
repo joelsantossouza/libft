@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 15:00:11 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:04:53 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_input_libc
 	const char	*base;
 }	t_input_libc;
 
+typedef struct s_input_myown
+{
+	const char	*str;
+	const char	*base;
+	int			expected;
+}	t_input_myown;
+
 void	test_libc(t_input_libc tab[], size_t size)
 {
 	int		output;
@@ -62,7 +69,26 @@ void	test_libc(t_input_libc tab[], size_t size)
 
 void	test_myown(t_input_myown tab[], size_t size)
 {
+	int		expected;
+	int		output;
+	char	*color;
 
+	printf("\n<test%02d> %s\n", i, tests_titles[i]);
+	while (size--)
+	{
+		expected = tab[size].str && tab[size].base ? tab[size].expected : 0;
+		output = ft_atoi_base(tab[size].str, tab[size].base);
+		color = expected == output ? GREEN : RED;
+
+		printf("%s", color);
+		printf("Input:   \t(%s) %s\n", tab[size].base, tab[size].str);
+		printf("Expected:\t%d\n", expected);
+		printf("Output:  \t%d\n", output);
+		printf("%s", RESET);
+
+		ATF_CHECK_EQ(expected, output);
+		printf("----------\n");
+	}
 }
 
 ATF_TC(test00);
