@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:27:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:29:19 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,46 @@ ATF_TC_HEAD(test03, tc)
 ATF_TC_BODY(test03, tc)
 {
 	t_input	tab[] = {
+		{"a", "abc"},
+		{"b", "abcd"},
+		{"", "x"},
+		{"x", "xy"},
+		{"ab", "abc"},
+		{"cd", "cdef"},
+		{"1", "123"},
+		{"12", "1234"},
+		{"", "hello"},
+		{"h", "hello"},
+		{"he", "hello"},
+		{"hel", "hello"},
+		{"abcd", "abcdef"},
+		{"xyz", "xyzabc"},
+		{"a", "ab"},
+		{"b", "bc"},
+		{"", "abc"},
+		{"x", "xyz"},
+		{"xy", "xyz"},
+		{"", "1234"},
+		{"1", "12345"},
+		{"12", "123456"},
+		{"abc", "abcdefg"},
+		{"ab", "abcd"},
+		{"a", "abcde"},
+		{"", "test"},
+		{"t", "test"},
+		{"te", "test"},
+		{"tes", "test"},
+		{"tt", "test"},
+		{"zz", "zzzz"},
+		{"", "longerstring"},
+		{"s", "longerstring"},
+		{"st", "longerstring"},
+		{"sho", "shortlong"},
+		{"shor", "shortlong"},
+		{"sho", "shortlonger"},
+		{"", "nonempty"},
+		{"n", "nonempty"},
+		{"no", "nonempty"},
 	};
 
 	i = 3;
