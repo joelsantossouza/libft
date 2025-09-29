@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 14:03:50 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 14:36:25 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	ft_atoi_base(const char *nptr, const char *base)
 		if (*nptr++ == '-')
 			sign = -1;
 	n = 0;
-	found = ft_strnchr(base, *nptr, base_len);
+	found = ft_memchr(base, *nptr, base_len);
 	while (found)
 	{
 		n = n * base_len + (found - base);
-		found = ft_strnchr(base, *nptr, base_len);
+		found = ft_memchr(base, *nptr, base_len);
 	}
 	return (n * sign);
 }
