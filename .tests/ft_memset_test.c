@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mempset_test.c                                  :+:      :+:    :+:   */
+/*   ft_memset_test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 12:15:58 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 12:24:20 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ void	test(t_input tab[], int size)
 				free(output_dst);
 				return ;
 			}
-			memset(expected_dst, min, tab[size].n);
-			expected = output_dst + tab[size].n;
-			output = ft_mempset(output_dst, min, tab[size].n);
+			expected = memset(expected_dst, min, tab[size].n);
+			output = ft_memset(output_dst, min, tab[size].n);
 			color = expected == output && !memcmp(output_dst, expected_dst, tab[size].n) ? GREEN : RED;
 
 			printf("%s", color);
@@ -117,8 +116,8 @@ void	test_expect(t_input tab[], int size, int flags)
 				if (!output_dst)
 					return ;
 			}
-			expected = !output_dst ? 0 : output_dst + tab[size].n;
-			output = ft_mempset(output_dst, min, tab[size].n);
+			expected = output_dst;
+			output = ft_memset(output_dst, min, tab[size].n);
 			color = expected == output ? GREEN : RED;
 
 			printf("%s", color);
