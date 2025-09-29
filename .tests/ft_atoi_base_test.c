@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 15:04:53 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:11:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,29 @@ void	test_myown(t_input_myown tab[], size_t size)
 	}
 }
 
+// TEST 00 --> NULL INPUTS
 ATF_TC(test00);
 ATF_TC_HEAD(test00, tc)
 {
-	atf_tc_set_md_var(tc, "descr", "Recreating the ctype library");
+	atf_tc_set_md_var(tc, "descr", tests_titles[0]);
 }
 ATF_TC_BODY(test00, tc)
 {
-	test(-100, 10000);
+	t_input_myown	tab[] = {
+		{0, "123", 0},
+		{"123", 0, 0},
+		{0, 0, 0},
+		{0, "", 0},
+		{"", 0, 0},
+		{"-+", 0, 0},
+		{0, "-+", 0},
+	};
+
+	i = 0;
+	test_myown(tab, NELEM(tab, t_input_myown));
 }
+
+// TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
