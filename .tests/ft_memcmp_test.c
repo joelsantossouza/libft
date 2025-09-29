@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 19:33:32 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:19:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,25 @@ void	test(t_input tab[], int size, int flags)
 				expected = memcmp(tab[size].s1, tab[size].s2, cmp_size);
 
 			output = ft_memcmp(tab[size].s1, tab[size].s2, cmp_size);
-			color = output == expected ? GREEN : RED;
+			if (expected > 0)
+				color = output > 0 ? GREEN : RED;
+			else if (expected == 0)
+				color = output == 0 ? GREEN : RED;
+			else if (expected < 0)
+				color = output < 0 ? GREEN : RED;
 
 			printf("%s", color);
-			printf("Input:   \t\"%s\"\t-\t\"%s\"\n", tab[size].s1, tab[size].s2);
+			printf("Input:   \t\"%s\"\t-\t\"%s\"\t%lu\n", tab[size].s1, tab[size].s2, cmp_size);
 			printf("Expected:\t%3d\n", expected);
 			printf("Output:  \t%3d\n\n", output);
 			printf("%s", RESET_COLOR);
 
-			ATF_CHECK_EQ(expected, output);
+			if (expected > 0)
+				ATF_CHECK(output > 0);
+			else if (expected == 0)
+				ATF_CHECK(output == 0);
+			else if (expected < 0)
+				ATF_CHECK(output < 0);
 			printf("----------\n");
 		}
 	}
@@ -394,6 +404,7 @@ ATF_TC_BODY(test04, tc)
 		{"t-voX}BRK2]P", "6w^E0nk+o", LIBC_EXPECT},
 		{"MHYl+OlsSkZ", "$O)Lp%1(^", LIBC_EXPECT},
 		{"c.7MMheMc", "W6ucZu1qPrn", LIBC_EXPECT},
+		{"c", "W", LIBC_EXPECT},
 		{"`gr2|", "!|6i", LIBC_EXPECT},
 		{"a82kS+L4", "^vzg`iA", LIBC_EXPECT},
 		{">}%s", "eX,I", LIBC_EXPECT},
