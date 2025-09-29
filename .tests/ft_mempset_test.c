@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 12:05:24 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 12:09:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,41 @@ void	test(t_input tab[], int size)
 	void	*expected;
 	void	*expected_dst;
 	char	*color;
+	int		min;
+	int		max;
 
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
+	max = 430;
 	while (size--)
 	{
-		output_dst = malloc(tab[size].n);
-		if (!output_dst)
-			return ;
-		expected_dst = malloc(tab[size].n);
-		if (!expected_dst)
+		min = -300 - 1;
+		while (++min < max)
 		{
+			output_dst = malloc(tab[size].n);
+			if (!output_dst)
+				return ;
+			expected_dst = malloc(tab[size].n);
+			if (!expected_dst)
+			{
+				free(output_dst);
+				return ;
+			}
+			memset(expected_dst, min, tab[size].n);
+			expected = output_dst + tab[size].n;
+			output = ft_mempset(output_dst, min, tab[size].n);
+			color = expected == output && !memcmp(output_dst, expected_dst, tab[size].n) ? GREEN : RED;
+
+			printf("%s", color);
+			ft_put_row("Input:   ", output_dst, (char *) tab[size].src, tab[size].n);
+			ft_put_row("Expected:", expected, (char *) expected_dst, tab[size].n);
+			ft_put_row("Output:  ", output, (char *) output_dst, tab[size].n);
+			printf("%s", RESET_COLOR);
+
+			ATF_CHECK(expected == output && !memcmp(output_dst, expected_dst, tab[size].n));
+			printf("----------\n");
 			free(output_dst);
-			return ;
+			free(expected_dst);
 		}
-		expected = mempcpy(expected_dst, tab[size].src, tab[size].n) - expected_dst + output_dst;
-		output = ft_mempcpy(output_dst, tab[size].src, tab[size].n);
-		color = expected == output && !memcmp(output_dst, expected_dst, tab[size].n) ? GREEN : RED;
-
-		printf("%s", color);
-		ft_put_row("Input:   ", output_dst, (char *) tab[size].src, tab[size].n);
-		ft_put_row("Expected:", expected, (char *) expected_dst, tab[size].n);
-		ft_put_row("Output:  ", output, (char *) output_dst, tab[size].n);
-		printf("%s", RESET_COLOR);
-
-		ATF_CHECK(expected == output && !memcmp(output_dst, expected_dst, tab[size].n));
-		printf("----------\n");
-		free(output_dst);
-		free(expected_dst);
 	}
 }
 
