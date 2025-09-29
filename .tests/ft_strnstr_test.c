@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:19:23 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:27:41 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ char	*tests_titles[] = {
 	"Null Strings",
 	"Empty Strings",
 	"Big Strings",
-	"Dest Bigger Than Src",
-	"Src Bigger than Dest",
+	"String little Bigger Than String big",
 };
 static int	i;
 
@@ -137,7 +136,11 @@ ATF_TC_HEAD(test01, tc)
 ATF_TC_BODY(test01, tc)
 {
 	t_input	tab[] = {
-		{},
+		{"", ""},
+		{"abc", ""},
+		{"", "abc"},
+		{"", ""},
+		{"", ""},
 	};
 
 	i = 1;
@@ -153,13 +156,97 @@ ATF_TC_HEAD(test02, tc)
 ATF_TC_BODY(test02, tc)
 {
 	t_input	tab[] = {
+		{"", ""},
+		{"", "abc"},
+		{"abc", ""},
+		{"hello world", "world"},
+		{"hello world", "planet"},
+		{"abcdefgh", "cde"},
+		{"abcdefgh", "xyz"},
+		{"aaaaaa", "aaa"},
+		{"aaaaaa", "aaaaaa"},
+		{"abcdef", "abcdefg"},
+		{"foo bar baz", "bar"},
+		{"foo bar baz", "bazooka"},
+		{"1234567890", "456"},
+		{"1234567890", "098"},
+		{"the quick brown fox", "quick"},
+		{"the quick brown fox", "slow"},
+		{"Lorem ipsum dolor sit amet", "ipsum"},
+		{"Lorem ipsum dolor sit amet", "IPSUM"},
+		{"test string", "test"},
+		{"test string", "string"},
+		{"test string", "strings"},
+		{"needle in a haystack", "needle"},
+		{"needle in a haystack", "stack"},
+		{"needle in a haystack", "needles"},
+		{"openai rocks", "rocks"},
+		{"openai rocks", "openai"},
+		{"openai rocks", "rock"},
+		{"abcdefg", "fg"},
+		{"abcdefg", "gh"},
+		{"mississippi", "issi"},
+		{"mississippi", "issis"},
+		{"aaaaaaaaaa", "aaaa"},
+		{"aaaaaaaaaa", "baaa"},
+		{"", "nonempty"},
+		{"short", "longerstring"},
+		{"longerstring", "short"},
+		{"abcdefghij", "a"},
+		{"abcdefghij", "j"},
+		{"abcdefghij", "z"},
+		{"  spaced out  ", " "},
+		{"tabs\tand\nnewlines", "\t"},
+		{"tabs\tand\nnewlines", "\n"},
+		{"tabs\tand\nnewlines", "new"},
+		{"UPPERlower", "lower"},
+		{"UPPERlower", "LOWER"},
+		{"caseCASE", "CASE"},
+		{"caseCASE", "case"},
+		{"123abc456", "abc"},
+		{"123abc456", "xyz"},
+		{"repetition repetition", "repetition"},
+		{"repetition repetition", "ition"},
+		{"repetition repetition", "xyz"},
+		{"pneumonoultramicroscopicsilicovolcanoconiosis", "volcano"},
+		{"pneumonoultramicroscopicsilicovolcanoconiosis", "volcanic"},
+		{"supercalifragilisticexpialidocious", "fragil"},
+		{"supercalifragilisticexpialidocious", "fragile"},
+		{"zyxwvutsrqponmlkjihgfedcba", "mlkj"},
+		{"zyxwvutsrqponmlkjihgfedcba", "abcd"},
+		{"edgecase", "edge"},
+		{"edgecase", "case"},
+		{"edgecase", "edgy"},
+		{"prefixsuffix", "prefix"},
+		{"prefixsuffix", "suffix"},
+		{"prefixsuffix", "fixes"},
+		{"middlewordhere", "word"},
+		{"middlewordhere", "words"},
+		{"hellothere", "hello"},
+		{"hellothere", "there"},
+		{"hellothere", "other"},
+		{"onetwothree", "two"},
+		{"onetwothree", "four"},
+		{"randomchars!!??", "!!"},
+		{"randomchars!!??", "??"},
+		{"randomchars!!??", "!?"},
+		{"000111222333", "111"},
+		{"000111222333", "444"},
+		{"multiline\nstring", "line"},
+		{"multiline\nstring", "multiline\n"},
+		{"multiline\nstring", "lines"},
+		{"spaces in the middle", "in the"},
+		{"spaces in the middle", "between"},
+		{"boundary", "boundary"},
+		{"boundary", "ound"},
+		{"boundary", "bond"}
 	};
 
 	i = 2;
 	test(tab, NELEM(tab));
 }
 
-// TEST 03 --> DEST BIGGER THAN SRC
+// TEST 03 --> STR_LITTLE BIGGER THAN STR_BIG
 ATF_TC(test03);
 ATF_TC_HEAD(test03, tc)
 {
@@ -174,21 +261,6 @@ ATF_TC_BODY(test03, tc)
 	test(tab, NELEM(tab));
 }
 
-// TEST 04 --> SRC BIGGER THAN DEST
-ATF_TC(test04);
-ATF_TC_HEAD(test04, tc)
-{
-	atf_tc_set_md_var(tc, "descr", tests_titles[4]);
-}
-ATF_TC_BODY(test04, tc)
-{
-	t_input	tab[] = {
-	};
-	
-	i = 4;
-	test(tab, NELEM(tab));
-}
-
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
@@ -196,7 +268,6 @@ ATF_TP_ADD_TCS(tp)
 	ATF_TP_ADD_TC(tp, test01);
 	ATF_TP_ADD_TC(tp, test02);
 	ATF_TP_ADD_TC(tp, test03);
-	ATF_TP_ADD_TC(tp, test04);
 
 	return (atf_no_error());
 }
