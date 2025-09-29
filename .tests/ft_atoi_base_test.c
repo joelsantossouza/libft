@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 15:14:24 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:18:59 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,35 @@ ATF_TC_BODY(test00, tc)
 	test_myown(tab, NELEM(tab, t_input_myown));
 }
 
+// TEST 01 --> EMPTY INPUTS
+ATF_TC(test01);
+ATF_TC_HEAD(test01, tc)
+{
+	atf_tc_set_md_var(tc, "descr", tests_titles[1]);
+}
+ATF_TC_BODY(test01, tc)
+{
+	t_input_libc	tab[] = {
+		{"", ""},
+		{"1234", ""},
+		{"", "1234"},
+		{"", "-+"},
+		{"-+", ""},
+		{"  234f2 ", ""},
+		{"", "  234f2 "},
+		{"", "987642"},
+		{"987642", ""},
+	};
+
+	i = 1;
+	test_libc(tab, NELEM(tab, t_input_libc));
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
+	ATF_TP_ADD_TC(tp, test01);
 
 	return (atf_no_error());
 }
