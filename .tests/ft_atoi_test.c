@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 16:57:43 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:01:22 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	test_libc(char *tab[], size_t size)
 	int		output;
 	int		expected;
 	char	*color;
-	char	*end;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
@@ -192,11 +191,11 @@ ATF_TC_BODY(test02, tc)
 		"\x33\x22\x11",
 		"\x55\x44\x33\x22",
 		"\xaa\xbb",
-		"\x77\x77\x77\x77",
-		"\x12\x34",
-		"\x99",
-		"\x01",
-		"\xff",
+		"203948\x77\x77\x77\x77",
+		"000024\x12\x34",
+		"11111\x99",
+		"\t239822\x01",
+		"   -221029\xff",
 	};
 
 	i = 2;
