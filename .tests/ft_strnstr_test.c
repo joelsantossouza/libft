@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy_test.c                                  :+:      :+:    :+:   */
+/*   ft_strnstr_test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:10:55 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:09:57 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,84 +36,56 @@ static int	i;
 
 typedef struct s_input
 {
-	size_t		dst_size;
-	const char	*src;
-	size_t		size;
+	const char	*big;
+	const char	*little;
+	size_t		len;
 }	t_input;
 
 void	test(t_input tab[], size_t size)
 {
-	char	*expected_dst;
-	char	*myown_dst;
-	size_t	expected_ret;
-	size_t	myown_ret;
+	char	*expected;
+	char	*output;
 	char	*color;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected_dst = malloc(tab[size].dst_size);
-		if (!expected_dst)
-			return ;
-		myown_dst = malloc(tab[size].dst_size);
-		if (!myown_dst)
-			return (free(expected_dst));
-		expected_ret = strlcpy(expected_dst, tab[size].src, tab[size].size);
-		myown_ret = ft_strlcpy(myown_dst, tab[size].src, tab[size].size);
-		color = expected_ret == myown_ret && !strncmp(expected_dst, myown_dst, tab[size].size) ? GREEN : RED;
+		expected = strnstr(tab[size].big, tab[size].little, tab[size].len);
+		output = ft_strnstr(tab[size].big, tab[size].little, tab[size].len);
+		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t%s\n", tab[size].src);
-		printf("Expected:\t(%lu) %.*s\n", expected_ret, (int) tab[size].size, expected_dst);
-		printf("Output:  \t(%lu) %.*s\n", myown_ret, (int) tab[size].size, myown_dst);
+		printf("Input:   \t%s - %s\t(%lu)\n", tab[size].big, tab[size].little, tab[size].len);
+		printf("Expected:\t(%p) %s\n", expected, expected);
+		printf("Output:  \t(%p) %s\n", output, output);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(expected_ret == myown_ret && !strncmp(expected_dst, myown_dst, tab[size].size));
+		ATF_CHECK_EQ(output, expected);
 		printf("----------\n");
-
-		free(expected_dst);
-		free(myown_dst);
 	}
 }
 
-void	test_nulls(t_input tab[], size_t size, int flags)
+void	test_nulls(t_input tab[], size_t size)
 {
-	char	*expected_dst;
-	char	*myown_dst;
-	size_t	expected_ret;
-	size_t	myown_ret;
+	char	*expected;
+	char	*output;
 	char	*color;
 
-	printf("{My Own Test}\n");
+	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		if (flags & TEST_NULLS)
-			expected_dst = myown_dst = 0;
-		else
-		{
-			expected_dst = malloc(tab[size].dst_size);
-			if (!expected_dst)
-				return ;
-			myown_dst = malloc(tab[size].dst_size);
-			if (!myown_dst)
-				return (free(expected_dst));
-		}
-		ft_memcpy(expected_dst, myown_dst, tab[size].dst_size);
-		expected_ret = ft_strlen(tab[size].src);
-		myown_ret = ft_strlcpy(myown_dst, tab[size].src, tab[size].size);
-		color = expected_ret == myown_ret && !ft_strncmp(expected_dst, myown_dst, tab[size].dst_size) ? GREEN : RED;
+		expected = 0;
+		output = ft_strnstr(tab[size].big, tab[size].little, tab[size].len);
+		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t%s\n", tab[size].src);
-		printf("Expected:\t(%lu) %.*s\n", expected_ret, (int)tab[size].dst_size, expected_dst);
-		printf("Output:  \t(%lu) %.*s\n", myown_ret, (int)tab[size].dst_size, myown_dst);
+		printf("Input:   \t%s - %s\t(%lu)\n", tab[size].big, tab[size].little, tab[size].len);
+		printf("Expected:\t(%p) %s\n", expected, expected);
+		printf("Output:  \t(%p) %s\n", output, output);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(expected_ret == myown_ret && !ft_strncmp(expected_dst, myown_dst, tab[size].dst_size));
+		ATF_CHECK_EQ(output, expected);
 		printf("----------\n");
-
-		free(expected_dst);
-		free(myown_dst);
 	}
 }
 
@@ -127,34 +99,20 @@ ATF_TC_BODY(test00, tc)
 {
 	t_input	tab1[] = {
 		{0, 0, 0},
-		{1, 0, 0},
-		{0, 0, 1},
-		{1, 0, 1},
-		{1, 0, 10},
-		{10, 0, 10},
-		{10, 0, 1},
-		{100, 0, 10},
-		{10, 0, 100},
-		{100, 0, 100},
-	};
-	t_input	tab2[] = {
-		{0, "f8&KqZpL#9", 0},
-		{1, "TgY7w^pLk@2zR", 0},
-		{0, "aP3$LmNzX!qRvT1oJ", 1},
-		{1, "xV8m#QwErTzYpLd9FhGjK", 1},
-		{1, "Zr7@qLpXyNwVt8sBmCkJdHf", 10},
-		{10, "mP2&nXvLqWtR9zYgFhJbCsTk4o", 10},
-		{10, "cL8$XpQzNrVwTgHfYjMkSaBdUiKo", 1},
-		{100, "hT1@qLpXyNwVt8sBmCkJdHfZr7pRvGjF", 10},
-		{10, "pR4#nXvLqWtR9zYgFhJbCsTkLmQaWmZoXt", 100},
-		{100, "jK9^xLpQwErTzYpLd9FhGjKmNaSbDcVtYwXr", 100},
+		{"hi", 0, 0},
+		{0, "hi", 1},
+		{"", 0, 1},
+		{"\x01", 0, 1},
+		{"", 0, 10},
+		{"29fj20f9j2", 0, 10},
+		{0, "", 1},
+		{"\000", 0, 10},
+		{0, 0, 100},
+		{"abc", 0, 100},
 	};
 
 	i = 0;
-	printf("\n<test%02d> %s\n", i, tests_titles[i]);
-	test_nulls(tab1, NELEM(tab1), 0);
-	test_nulls(tab1, NELEM(tab1), TEST_NULLS);
-	test_nulls(tab2, NELEM(tab2), TEST_NULLS);
+	test_nulls(tab1, NELEM(tab1));
 }
 
 // TEST 01 --> EMPTY STRINGS

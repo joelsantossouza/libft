@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/28 19:10:51 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:11:45 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,6 @@ void	test(t_input tab[], size_t size)
 		free(expected_dst);
 		free(myown_dst);
 	}
-}
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	if ((!s1 && !s2) || !n)
-		return (0);
-	if (!s1)
-		return (-1);
-	if (!s2)
-		return (1);
-	while (*s1 == *s2 && *s1 && n-- > 1)
-	{
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
 }
 
 void	test_nulls(t_input tab[], size_t size, int flags)
