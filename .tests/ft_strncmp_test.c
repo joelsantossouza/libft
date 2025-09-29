@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:30:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 09:58:46 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:10:13 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	test(t_input tab[], int size, int flags)
 		while (++cmp_size < len)
 		{
 			if (flags & MY_EXPECT)
-				expected = tab[size].expected;
+				expected = cmp_size == 0 ? 0 : tab[size].expected;
 			else
 				expected = strncmp(tab[size].s1, tab[size].s2, cmp_size);
 
