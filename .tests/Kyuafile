@@ -105,3 +105,7 @@ end
 if fs.exists("ft_memchr_test") then
 	atf_test_program{name="ft_memchr_test"}
 end
+
+if fs.exists("ft_atoi_base_test") then
+	atf_test_program{name="ft_atoi_base_test"}
+end
