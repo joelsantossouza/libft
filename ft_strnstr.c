@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:25:38 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:46:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:56:27 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	if (big && little)
 	{
+		if (!*little || !len)
+			return ((char *) big);
 		little_len = ft_strlen(little);
 		while (len-- && *big)
 			if (ft_strncmp(big++, little, little_len) == 0)
