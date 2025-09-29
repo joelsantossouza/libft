@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 21:41:33 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:04:51 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	test(t_input tab[], size_t size)
 			color = expected == output ? GREEN : RED;
 
 			printf("%s", color);
-			printf("Input:   \t%s - %s\t(%lu)\n", tab[size].big, tab[size].little, len);
-			printf("Expected:\t(%p) %s\n", expected, expected);
-			printf("Output:  \t(%p) %s\n", output, output);
+			printf("Input:   \t\"%s\" - \"%s\"\t(%lu)\n", tab[size].big, tab[size].little, len);
+			printf("Expected:\t(%p) \"%s\"\n", expected, expected);
+			printf("Output:  \t(%p) \"%s\"\n", output, output);
 			printf("%s", RESET_COLOR);
 
 			ATF_CHECK_EQ(output, expected);
