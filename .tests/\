@@ -1,0 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
+/*   Updated: 2025/09/29 07:55:40 by joesanto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include <atf-c.h>
+#include <string.h>
+#include <printf.h>
+
+char	*tests_titles[] = {
+	"Null Strings",
+	"Empty Strings",
+	"Big Strings",
+};
