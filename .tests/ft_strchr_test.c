@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 08:27:56 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/29 08:37:10 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,27 @@ ATF_TC_BODY(test01, tc)
 	test(tab, NELEM(tab), _range, 0);
 }
 
+// TEST 02 --> BIG STRINGS
+ATF_TC(test02);
+ATF_TC_HEAD(test02, tc)
+{
+	atf_tc_set_md_var(tc, "descr", tests_titles[2]);
+}
+ATF_TC_BODY(test02, tc)
+{
+	char	*tab[] = {
+	};
+
+	i = 2;
+	test(tab, NELEM(tab), _range, 0);
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
 	ATF_TP_ADD_TC(tp, test00);
 	ATF_TP_ADD_TC(tp, test01);
+	ATF_TP_ADD_TC(tp, test02);
 
 	return (atf_no_error());
 }
