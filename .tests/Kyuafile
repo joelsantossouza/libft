@@ -34,6 +34,10 @@ if fs.exists("ft_memset_test") then
 	atf_test_program{name="ft_memset_test"}
 end
 
+if fs.exists("ft_bzero_test") then
+	atf_test_program{name="ft_bzero_test"}
+end
+
 if fs.exists("ft_stpcpy_test") then
 	atf_test_program{name="ft_stpcpy_test"}
 end
