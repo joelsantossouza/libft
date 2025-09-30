@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 09:08:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 09:18:30 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:05:48 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char		*pdest;
 	const char	*psrc;
 
-	if (dest <= src || dest >= src + n)
+	if (dest <= src)
 		return (ft_memcpy(dest, src, n));
 	pdest = (char *) dest;
 	psrc = (const char *) src;
