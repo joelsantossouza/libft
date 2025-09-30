@@ -6,11 +6,11 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 17:48:26 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/26 19:17:01 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:08:14 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	*ft_mempcpy(void *dest, const void *src, size_t n)
 {

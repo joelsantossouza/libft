@@ -6,11 +6,11 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 09:46:16 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 17:56:37 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:07:50 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
