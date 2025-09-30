@@ -129,3 +129,7 @@ end
 if fs.exists("ft_calloc_test") then
 	atf_test_program{name="ft_calloc_test"}
 end
+
+if fs.exists("ft_strdup_test") then
+	atf_test_program{name="ft_strdup_test"}
+end
