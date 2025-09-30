@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_words_count.c                                   :+:      :+:    :+:   */
+/*   ft_strpbrknul.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 20:42:40 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 00:33:51 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/30 23:44:58 by joesanto          #+#    #+#             */
+/*   Updated: 2025/10/01 00:29:46 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_words_count(char const *s, const char *delim)
+char	*ft_strpbrknul(const char *s, const char *accept)
 {
-	size_t	nwords;
-
-	if (!s)
-		return (0);
-	nwords = 0;
-	while (*s)
-	{
-		s = ft_strpbrknul_diff(s, delim);
-		nwords += *s != 0;
-		s = ft_strpbrknul(s, delim);
-	}
-	return (nwords);
+	if (s && accept)
+		while (*s)
+			if (ft_strchr(accept, *s++))
+				return ((char *)(s - 1));
+	return ((char *) s);
 }

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_words_count.c                                   :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 20:42:40 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 00:33:51 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/30 23:29:31 by joesanto          #+#    #+#             */
+/*   Updated: 2025/10/01 00:41:38 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_words_count(char const *s, const char *delim)
+char	*ft_strtok(const char *str, const char *delim)
 {
-	size_t	nwords;
+	static const char	*ptr;
 
-	if (!s)
-		return (0);
-	nwords = 0;
-	while (*s)
+	if (!delim)
 	{
-		s = ft_strpbrknul_diff(s, delim);
-		nwords += *s != 0;
-		s = ft_strpbrknul(s, delim);
+		ptr = str;
+		return (0);
 	}
-	return (nwords);
+	if (str)
+		str = ft_strpbrk_diff(str, delim);
+	else
+		str = ft_strpbrk_diff(ptr, delim);
+	ptr = ft_strpbrk(str, delim);
+	return (ft_strndup(str, ptr - str));
 }

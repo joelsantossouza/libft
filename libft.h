@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 20:43:35 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:32:18 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strchrnul(const char *s, int c);
+char	*ft_strchrnul_diff(const char *s, int c);
 int		ft_atoi_base(const char *nptr, const char *base);
 int		ft_atoi(const char *nptr);
+char	*ft_strstr(const char *haystack, const char *needle);
+char	*ft_strstr_diff(const char *haystack, const char *needle);
+char	*ft_strstrnul(const char *haystack, const char *needle);
+char	*ft_strstrnul_diff(const char *haystack, const char *needle);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	*ft_strpbrk(const char *s, const char *accept);
+char	*ft_strpbrk_diff(const char *s, const char *accept);
+char	*ft_strpbrknul(const char *s, const char *accept);
+char	*ft_strpbrknul_diff(const char *s, const char *accept);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
@@ -60,7 +69,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 void	*ft_freearray(void **array);
-size_t	ft_words_count(char const *s, char c);
-char	**ft_split(char const *s, char c);
+size_t	ft_words_count(char const *s, const char *delim);
+char	**ft_split(char const *s, const char *delim);
+char	*ft_strtok(const char *str, const char *delim);
 
 #endif

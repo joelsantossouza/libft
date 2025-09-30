@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_words_count.c                                   :+:      :+:    :+:   */
+/*   ft_strstrnul.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 20:42:40 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 00:33:51 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/30 23:44:58 by joesanto          #+#    #+#             */
+/*   Updated: 2025/10/01 00:05:53 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_words_count(char const *s, const char *delim)
+char	*ft_strstrnul(const char *haystack, const char *needle)
 {
-	size_t	nwords;
+	size_t	needle_len;
 
-	if (!s)
-		return (0);
-	nwords = 0;
-	while (*s)
+	if (haystack && needle)
 	{
-		s = ft_strpbrknul_diff(s, delim);
-		nwords += *s != 0;
-		s = ft_strpbrknul(s, delim);
+		if (!*needle)
+			return ((char *) haystack);
+		needle_len = ft_strlen(needle);
+		while (*haystack)
+			if (ft_strncmp(haystack++, needle, needle_len) == 0)
+				return ((char *)(haystack - 1));
 	}
-	return (nwords);
+	return ((char *) haystack);
 }
