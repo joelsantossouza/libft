@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 14:02:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:12:19 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 #define TEST_NULLS	1<<0
 
 char	*test_titles[] = {
+	"Null strings",
+	"Empty Strings",
+	"Regular Strings",
+	"Big Strings",
 };
 static int	i;
 
@@ -55,7 +59,7 @@ void	test(char *tab[], int size)
 		free(expected_dst);
 	}
 }
-// TEST 00 -->
+// TEST 00 --> NULL STRINGS
 ATF_TC(test00);
 ATF_TC_HEAD(test00, tc)
 {
@@ -63,11 +67,15 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
+	char	*tab[] = {
+		0,
+	};
+
 	i = 0;
 	test(tab, NELEM(tab));
 }
 
-// TEST 01 -->
+// TEST 01 --> EMPTY STRINGS
 ATF_TC(test01);
 ATF_TC_HEAD(test01, tc)
 {
@@ -75,11 +83,15 @@ ATF_TC_HEAD(test01, tc)
 }
 ATF_TC_BODY(test01, tc)
 {
+	char	*tab[] = {
+		"",
+	};
+
 	i = 1;
 	test(tab, NELEM(tab));
 }
 
-// TEST 02 -->
+// TEST 02 --> REGULAR STRINGS
 ATF_TC(test02);
 ATF_TC_HEAD(test02, tc)
 {
