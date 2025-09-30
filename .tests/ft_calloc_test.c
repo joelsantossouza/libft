@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 11:14:06 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:45:25 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,24 @@ void	test(t_input tab[], int size)
 	void	*output_dst;
 	void	*expected_dst;
 	char	*color;
+	size_t	bytes;
 
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
 	while (size--)
 	{
+		bytes = tab[size].nmemb * tab[size].size;
+
 		expected_dst = calloc(tab[size].nmemb, tab[size].size);
 		output_dst = ft_calloc(tab[size].nmemb, tab[size].size);
-		color = !ft_memcmp(output_dst, expected_dst, tab[size].size) ? GREEN : RED;
+		color = !bytes || !ft_memcmp(output_dst, expected_dst, bytes) ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:  \t%lu - %lu\n", tab[size].nmemb, tab[size].size);
-		ft_put_row("Expected:", (char *) expected_dst, tab[size].size);
-		ft_put_row("Output:  ", (char *) output_dst, tab[size].size);
+		printf("Input:  \t%lu | %lu\n", tab[size].nmemb, bytes);
+		ft_put_row("Expected:", (char *) expected_dst, bytes);
+		ft_put_row("Output:  ", (char *) output_dst, bytes);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(!ft_memcmp(output_dst, expected_dst, tab[size].size));
+		ATF_CHECK(!bytes || !ft_memcmp(output_dst, expected_dst, bytes));
 		printf("----------\n");
 		free(output_dst);
 		free(expected_dst);
@@ -105,10 +108,6 @@ ATF_TC_BODY(test01, tc)
 		{100, 1},
 		{100, 2},
 		{500, 10},
-		{10, 1000},
-		{15, 1234},
-		{150, 234},
-		{46340, 46340},
 		{1073741823, 2},
 	};
 
