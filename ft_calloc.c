@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 10:29:44 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 10:39:30 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:26:26 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	bytes;
 
-	bytes = nmemb * size;
-	if (bytes > INT_MAX)
+	if (size && nmemb > ULONG_MAX / size)
 		return (0);
+	bytes = nmemb * size;
 	return (ft_memset(malloc(bytes), 0, bytes));
 }
