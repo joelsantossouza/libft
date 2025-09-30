@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 09:27:44 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 09:56:06 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*test_titles[] = {
 	"Integer Data",
 	"Float Data",
 	"Struct Data and Arrays",
+	"Overlap Data",
 };
 static int	i;
 
@@ -117,6 +118,49 @@ void	test_expect(t_input tab[], int size, int flags)
 		printf("----------\n");
 		free(output_dst);
 		output_dst = 0;
+	}
+}
+
+void	test_overlap(t_input tab[], int size)
+{
+	void	*output;
+	void	*output_dst;
+	void	*expected;
+	void	*expected_dst;
+	char	*color;
+	size_t	overlap;
+
+	printf("\n<test%02d> %s\n", i, test_titles[i]);
+	while (size--)
+	{
+		output_dst = malloc(tab[size].n);
+		if (!output_dst)
+			return ;
+		expected_dst = malloc(tab[size].n);
+		if (!expected_dst)
+		{
+			free(output_dst);
+			return ;
+		}
+		ft_memcpy(expected_dst, output_dst, tab[size].n);
+		overlap = -1;
+		while (++overlap <= tab[size].n)
+		{
+			expected = memmove(expected_dst, expected_dst + overlap, tab[size].n - overlap) - expected_dst + output_dst;
+			output = ft_memmove(output_dst, output_dst + overlap, tab[size].n - overlap);
+			color = expected == output && !memcmp(output_dst, expected_dst, tab[size].n) ? GREEN : RED;
+
+			printf("%s", color);
+			ft_put_row("Input:   ", output_dst, (char *) tab[size].src, tab[size].n);
+			ft_put_row("Expected:", expected, (char *) expected_dst, tab[size].n);
+			ft_put_row("Output:  ", output, (char *) output_dst, tab[size].n);
+			printf("%s", RESET_COLOR);
+
+			ATF_CHECK(expected == output && !memcmp(output_dst, expected_dst, tab[size].n));
+			printf("----------\n");
+		}
+		free(output_dst);
+		free(expected_dst);
 	}
 }
 
@@ -287,6 +331,67 @@ ATF_TC_BODY(test05, tc)
 	test(tab, NELEM(tab));
 }
 
+// TEST 06 --> OVERLAP DATA
+ATF_TC(test06);
+ATF_TC_HEAD(test06, tc)
+{
+	atf_tc_set_md_var(tc, "descr", test_titles[6]);
+}
+ATF_TC_BODY(test06, tc)
+{
+	t_input	tab[] = {
+		{0, 0},
+		{0, 1},
+		{0, 2},
+		{0, 3},
+		{0, 4},
+		{0, 5},
+		{0, 6},
+		{0, 7},
+		{0, 8},
+		{0, 9},
+		{0, 10},
+		{0, 20},
+		{0, 30},
+		{0, 42},
+		{0, 100},
+		{0, 200},
+		{0, 300},
+		{0, 400},
+		{0, 500},
+		{0, 600},
+		{0, 700},
+		{0, 800},
+		{0, 900},
+		{0, 1000},
+		{0, 1100},
+		{0, 1200},
+		{0, 1300},
+		{0, 1400},
+		{0, 1500},
+		{0, 1600},
+		{0, 1700},
+		{0, 1800},
+		{0, 1900},
+		{0, 2000},
+		{0, 2100},
+		{0, 2200},
+		{0, 2300},
+		{0, 2400},
+		{0, 9300},
+		{0, 9400},
+		{0, 9500},
+		{0, 9600},
+		{0, 9700},
+		{0, 9800},
+		{0, 9900},
+		{0, 10000},
+	};
+
+	i = 6;
+	test_overlap(tab, NELEM(tab));
+}
+
 // TEST PROGRAM
 ATF_TP_ADD_TCS(tp)
 {
@@ -296,6 +401,7 @@ ATF_TP_ADD_TCS(tp)
 	ATF_TP_ADD_TC(tp, test03);
 	ATF_TP_ADD_TC(tp, test04);
 	ATF_TP_ADD_TC(tp, test05);
+	ATF_TP_ADD_TC(tp, test06);
 
 	return (atf_no_error());
 }
