@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 19:20:05 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:38:06 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+char	*ft_strchrnul(const char *s, int c);
 int		ft_atoi_base(const char *nptr, const char *base);
 int		ft_atoi(const char *nptr);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -58,5 +59,6 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+void	*ft_freearray(void **array);
 
 #endif
