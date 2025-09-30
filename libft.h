@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 12:29:00 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:37:17 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-#define ULONG_MAX	18446744073709551615LU
+# define ULONG_MAX	18446744073709551615LU
 
 int		ft_islower(int c);
 int		ft_isupper(int c);
