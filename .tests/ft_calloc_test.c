@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 11:45:25 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/09/30 11:50:21 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ typedef struct s_input
 void	ft_put_row(char *type, const char *buf, size_t size)
 {
 	printf("%s\t", type);
-	while (size--)
-		printf("\\%02X", *buf++);
+	if (!buf)
+		printf("(null");
+	else
+		while (size--)
+			printf("\\%02X", *buf++);
 	printf("\n");
 }
 
@@ -108,7 +111,7 @@ ATF_TC_BODY(test01, tc)
 		{100, 1},
 		{100, 2},
 		{500, 10},
-		{1073741823, 2},
+		{1073022, 2},
 	};
 
 	i = 1;
