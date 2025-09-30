@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 18:08:34 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 18:41:48 by joesanto         ###   ########.fr       */
+/*   Created: 2025/09/30 19:21:58 by joesanto          #+#    #+#             */
+/*   Updated: 2025/09/30 19:32:46 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	ft_min(int n1, int n2)
+static size_t	ft_words_count(char const *s, char c)
 {
-	if (n1 < n2)
-		return (n1);
-	return (n2);
+	size_t	nwords;
+
+	if (!s)
+		return (0);
+	nwords = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		nwords += *s != 0;
+		while (*s && *s != c)
+			s++;
+	}
+	return (nwords);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	**ft_split(char const *s, char c)
 {
-	return (ft_strndup(s + ft_min(start, ft_strlen(s)), len));
 }
