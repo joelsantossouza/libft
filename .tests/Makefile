@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/01 20:15:25 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/01 20:25:08 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ fclean: clean
 re: fclean all
 
 FIND=$(shell find .. -maxdepth 1 -name "ft_*.c" -exec basename {} .c \;)
-check:
+missing:
 	@echo "---> TESTS MISSING <---\n"
 	@for file in $(FIND); do \
 		if echo "$(SRCS)" | grep -qv "$${file}_test.c"; then \
