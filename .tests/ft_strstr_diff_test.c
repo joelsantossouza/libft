@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 19:43:04 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:59:41 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	test(t_input tab[], size_t size)
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = tab[size].big;
+		expected = (char *) tab[size].big;
 		str = strstr(tab[size].big, tab[size].little);
-		while (expected == str)
-		{
-			str = strstr(++expected, tab[size].little);
-		}
+		if (*tab[size].little)
+			while (expected == str)
+				str = strstr(++expected, tab[size].little);
 		output = ft_strstr_diff(tab[size].big, tab[size].little);
 		color = expected == output ? GREEN : RED;
 

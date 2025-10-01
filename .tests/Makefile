@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/01 19:01:47 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/01 20:15:25 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ LIB=ft
 
 all: $(TEST)
 
-ft_%_test: ft_%_test.o ../lib$(LIB).a
+ft_%_test: ft_%_test.o $(LIB)
 	$(CC) $< -latf-c -L.. -l$(LIB) -o $@
 
 %.o: %.c
 	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I..
 
-../lib$(LIB).a:
+$(LIB):
 	make -C ..
 
 clean:
