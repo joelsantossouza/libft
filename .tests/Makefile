@@ -6,13 +6,14 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/01 16:43:22 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/01 19:01:47 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TEST=$(patsubst %.c, %, $(wildcard ft_*_test.c))
+TEST=$(patsubst %.c, %, $(SRCS))
 
-OBJS=$(addsuffix .o, $(TEST))
+SRCS=$(wildcard ft_*_test.c)
+OBJS=$(SRCS:.c=.o)
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g
 EXTRA=
@@ -36,3 +37,12 @@ fclean: clean
 	rm -f $(TEST)
 
 re: fclean all
+
+FIND=$(shell find .. -maxdepth 1 -name "ft_*.c" -exec basename {} .c \;)
+check:
+	@echo "---> TESTS MISSING <---\n"
+	@for file in $(FIND); do \
+		if echo "$(SRCS)" | grep -qv "$${file}_test.c"; then \
+		echo "> $${file}_test.c"; \
+		fi; \
+	done
