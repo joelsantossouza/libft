@@ -6,17 +6,16 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/09/26 11:45:16 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/01 15:35:07 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TEST=
+TEST=$(basename $(wildcard ft_*_test.c))
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g
 EXTRA=
 HEADER=../libft.h
 LIB=ft
-ALL_TESTS=$(wildcard *_test)
 
 all: $(TEST)
 
@@ -30,15 +29,9 @@ $(LIB):
 	make -C ..
 
 clean:
-	rm -f *.o
+	rm -f $(TEST).o
 
 fclean: clean
-	@if [ -z "$(findstring $(TEST), $(ALL_TESTS))" ]; then \
-		echo "\nNot such tests: \"$(TEST)\". Availables:"; \
-		echo " $(ALL_TESTS)" | sed 's/ /\n> /g'; \
-		echo ""; \
-		exit 1; \
-	fi
 	rm -f $(TEST)
 
 re: fclean all
