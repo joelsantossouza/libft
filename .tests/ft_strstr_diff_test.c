@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 19:59:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/01 20:20:59 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	test(t_input tab[], size_t size)
 		if (*tab[size].little)
 			while (expected == str)
 				str = strstr(++expected, tab[size].little);
+		else if (!*tab[size].big)
+				expected = 0;
 		output = ft_strstr_diff(tab[size].big, tab[size].little);
 		color = expected == output ? GREEN : RED;
 
