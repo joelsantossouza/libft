@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 00:32:18 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:57:49 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	*ft_freearray(void **array);
 size_t	ft_words_count(char const *s, const char *delim);
 char	**ft_split(char const *s, const char *delim);
-char	*ft_strtok(const char *str, const char *delim);
+char	*ft_strtok(char **token_orig, const char *str, const char *delim);
 
 #endif
