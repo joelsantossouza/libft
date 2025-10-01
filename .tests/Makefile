@@ -6,30 +6,31 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/01 15:35:07 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/01 16:43:22 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TEST=$(basename $(wildcard ft_*_test.c))
+TEST=$(patsubst %.c, %, $(wildcard ft_*_test.c))
+
+OBJS=$(addsuffix .o, $(TEST))
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g
 EXTRA=
-HEADER=../libft.h
 LIB=ft
 
 all: $(TEST)
 
-$(TEST): $(TEST).o $(LIB)
+ft_%_test: ft_%_test.o ../lib$(LIB).a
 	$(CC) $< -latf-c -L.. -l$(LIB) -o $@
 
-$(TEST).o: $(TEST).c $(HEADER)
-	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I ..
+%.o: %.c
+	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I..
 
-$(LIB):
+../lib$(LIB).a:
 	make -C ..
 
 clean:
-	rm -f $(TEST).o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(TEST)

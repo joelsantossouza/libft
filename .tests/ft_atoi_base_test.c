@@ -6,13 +6,14 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 16:40:32 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:57:04 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <atf-c.h>
 
 #define RED		"\e[0;31m"
