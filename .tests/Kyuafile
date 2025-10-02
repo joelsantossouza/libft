@@ -177,3 +177,7 @@ end
 if fs.exists("ft_strndup_test") then
 	atf_test_program{name="ft_strndup_test"}
 end
+
+if fs.exists("ft_word_count_test") then
+	atf_test_program{name="ft_word_count_test"}
+end

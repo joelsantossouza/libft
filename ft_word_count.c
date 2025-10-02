@@ -6,13 +6,13 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 20:42:40 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 13:14:38 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:45:53 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_words_count(char const *s, char c)
+size_t	ft_word_count(char const *s, char c)
 {
 	size_t	nwords;
 
