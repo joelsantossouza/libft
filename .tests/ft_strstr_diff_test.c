@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 08:38:17 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 08:56:55 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	test(t_input tab[], size_t size)
 	char	*expected;
 	char	*output;
 	char	*color;
-	char	*str;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
@@ -185,6 +184,8 @@ ATF_TC_BODY(test02, tc)
 {
 	t_input	tab[] = {
 		{"aaaaaaaaaaaaaaaaaa", "a"},
+		{"lolololololo", "lo"},
+		{"joeljoeljoeljoeljoeljoelcaralhojoeljoeljoel", "joel"},
 		{"", ""},
 		{"", "abc"},
 		{"abc", ""},
