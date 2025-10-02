@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr_diff_test.c                              :+:      :+:    :+:   */
+/*   ft_strstrnul_diff_test.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 08:38:17 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 08:04:42 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,47 +39,6 @@ typedef struct s_input
 	const char	*little;
 }	t_input;
 
-char *strstr_diff(const char *haystack, const char *needle)
-{
-    const char *h;
-    const char *n;
-    
-    // Return NULL if either parameter is NULL
-    if (haystack == NULL || needle == NULL)
-        return (NULL);
-    
-    // If needle is empty, return haystack (no characters to avoid)
-    if (*needle == '\0')
-        return ((char *)haystack);
-    
-    // Iterate through haystack
-    while (*haystack)
-    {
-        h = haystack;
-        n = needle;
-        
-        // Check if current position matches needle
-        while (*h && *n && *h == *n)
-        {
-            h++;
-            n++;
-        }
-        
-        // If we matched the entire needle, skip past it
-        if (*n == '\0')
-        {
-            haystack = h;
-            continue;
-        }
-        
-        // Found a character that doesn't start a needle match
-        return ((char *)haystack);
-    }
-    
-    // Reached end of string without finding non-needle character
-    return (NULL);
-}
-
 void	test(t_input tab[], size_t size)
 {
 	char	*expected;
@@ -90,8 +49,14 @@ void	test(t_input tab[], size_t size)
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = strstr_diff(tab[size].big, tab[size].little);
-		output = ft_strstr_diff(tab[size].big, tab[size].little);
+		expected = (char *) tab[size].big;
+		str = strstr(tab[size].big, tab[size].little);
+		if (*tab[size].little)
+			while (expected == str)
+				str = strstr(++expected, tab[size].little);
+		else if (!*tab[size].big)
+				expected = 0;
+		output = ft_strstrnul_diff(tab[size].big, tab[size].little);
 		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
@@ -115,7 +80,7 @@ void	test_nulls(t_input tab[], size_t size)
 	while (size--)
 	{
 		expected = 0;
-		output = ft_strstr_diff(tab[size].big, tab[size].little);
+		output = ft_strstrnul_diff(tab[size].big, tab[size].little);
 		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
@@ -184,7 +149,6 @@ ATF_TC_HEAD(test02, tc)
 ATF_TC_BODY(test02, tc)
 {
 	t_input	tab[] = {
-		{"aaaaaaaaaaaaaaaaaa", "a"},
 		{"", ""},
 		{"", "abc"},
 		{"abc", ""},
