@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 08:04:42 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 09:03:05 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,11 @@ void	test(t_input tab[], size_t size)
 	char	*expected;
 	char	*output;
 	char	*color;
-	char	*str;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = (char *) tab[size].big;
-		str = strstr(tab[size].big, tab[size].little);
-		if (*tab[size].little)
-			while (expected == str)
-				str = strstr(++expected, tab[size].little);
-		else if (!*tab[size].big)
-				expected = 0;
+		expected = strstrnul_diff(tab[size].big, tab[size].little);
 		output = ft_strstrnul_diff(tab[size].big, tab[size].little);
 		color = expected == output ? GREEN : RED;
 
@@ -63,30 +56,6 @@ void	test(t_input tab[], size_t size)
 		printf("Input:   \t\"%s\" - \"%s\"\n", tab[size].big, tab[size].little);
 		printf("Expected:\t(%p) \"%s\"\n", expected, expected);
 		printf("Output:  \t(%p) \"%s\"\n", output, output);
-		printf("%s", RESET_COLOR);
-
-		ATF_CHECK_EQ(output, expected);
-		printf("----------\n");
-	}
-}
-
-void	test_nulls(t_input tab[], size_t size)
-{
-	char	*expected;
-	char	*output;
-	char	*color;
-
-	printf("\n<test%02d> %s\n", i, tests_titles[i]);
-	while (size--)
-	{
-		expected = 0;
-		output = ft_strstrnul_diff(tab[size].big, tab[size].little);
-		color = expected == output ? GREEN : RED;
-
-		printf("%s", color);
-		printf("Input:   \t%s - %s\n", tab[size].big, tab[size].little);
-		printf("Expected:\t(%p) %s\n", expected, expected);
-		printf("Output:  \t(%p) %s\n", output, output);
 		printf("%s", RESET_COLOR);
 
 		ATF_CHECK_EQ(output, expected);
@@ -117,7 +86,7 @@ ATF_TC_BODY(test00, tc)
 	};
 
 	i = 0;
-	test_nulls(tab1, NELEM(tab1));
+	test(tab1, NELEM(tab1));
 }
 
 // TEST 01 --> EMPTY STRINGS
@@ -149,6 +118,9 @@ ATF_TC_HEAD(test02, tc)
 ATF_TC_BODY(test02, tc)
 {
 	t_input	tab[] = {
+		{"aaaaaaaaaaaaaaaaaa", "a"},
+		{"lolololololo", "lo"},
+		{"joeljoeljoeljoeljoeljoelcaralhojoeljoeljoel", "joel"},
 		{"", ""},
 		{"", "abc"},
 		{"abc", ""},
