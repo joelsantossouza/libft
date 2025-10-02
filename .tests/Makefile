@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/01 20:25:08 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/02 09:41:47 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,3 +46,4 @@ missing:
 		echo "> $${file}_test.c"; \
 		fi; \
 	done
+	@echo "\nTotal of Tests: $(words $(TEST))/$(words $(FIND))"

@@ -138,6 +138,10 @@ if fs.exists("ft_strstrnul_diff_test") then
 	atf_test_program{name="ft_strstrnul_diff_test"}
 end
 
+if fs.exists("ft_strstrnul_test") then
+	atf_test_program{name="ft_strstrnul_test"}
+end
+
 if fs.exists("ft_calloc_test") then
 	atf_test_program{name="ft_calloc_test"}
 end
