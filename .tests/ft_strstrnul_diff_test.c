@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 09:03:05 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 09:23:03 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,47 @@ typedef struct s_input
 	const char	*big;
 	const char	*little;
 }	t_input;
+
+char *strstrnul_diff(const char *haystack, const char *needle)
+{
+    const char *h;
+    const char *n;
+    
+    // Return NULL if either parameter is NULL
+    if (haystack == NULL || needle == NULL)
+        return (NULL);
+    
+    // If needle is empty, return haystack
+    if (*needle == '\0')
+        return ((char *)haystack);
+    
+    // Iterate through haystack
+    while (*haystack)
+    {
+        h = haystack;
+        n = needle;
+        
+        // Check if current position matches needle
+        while (*h && *n && *h == *n)
+        {
+            h++;
+            n++;
+        }
+        
+        // If we matched the entire needle, skip past it
+        if (*n == '\0')
+        {
+            haystack = h;
+            continue;
+        }
+        
+        // Found a character that doesn't start a needle match
+        return ((char *)haystack);
+    }
+    
+    // Reached end: return pointer to null terminator
+    return ((char *)haystack);
+}
 
 void	test(t_input tab[], size_t size)
 {
