@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:44:58 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 09:14:52 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 09:57:09 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ char	*ft_strstrnul_diff(const char *haystack, const char *needle)
 {
 	size_t	needle_len;
 
-	if (!needle)
+	if (!haystack || !needle)
 		return (0);
-	if (haystack)
+	if (*needle)
 	{
-		if (!*needle)
-			return ((char *) haystack);
 		needle_len = ft_strlen(needle);
 		while (*haystack)
 		{
