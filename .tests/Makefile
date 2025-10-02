@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/02 09:41:47 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/02 10:42:26 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,24 @@ TEST=$(patsubst %.c, %, $(SRCS))
 
 SRCS=$(wildcard ft_*_test.c)
 OBJS=$(SRCS:.c=.o)
+HEADER_DIR=..
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g
 EXTRA=
 LIB=ft
+LIB_DIR=..
+
+.SECONDARY: $(OBJS) $(LIB_DIR)/lib$(LIB).a
 
 all: $(TEST)
 
-ft_%_test: ft_%_test.o $(LIB)
-	$(CC) $< -latf-c -L.. -l$(LIB) -o $@
+ft_%_test: ft_%_test.o $(LIB_DIR)/lib$(LIB).a
+	$(CC) $< -latf-c -L$(LIB_DIR) -l$(LIB) -o $@
 
-%.o: %.c
-	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I..
+ft_%_test.o: ft_%_test.c
+	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I$(HEADER_DIR)
 
-$(LIB):
+$(LIB_DIR)/lib%.a: $(wildcard $(LIB_DIR)/*.c)
 	make -C ..
 
 clean:
