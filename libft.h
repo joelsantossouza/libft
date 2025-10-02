@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 13:33:47 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/02 11:35:06 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	*ft_strstrnul(const char *haystack, const char *needle);
 char	*ft_strstrnul_diff(const char *haystack, const char *needle);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strpbrk(const char *s, const char *accept);
-char	*ft_strpbrk_diff(const char *s, const char *accept);
+char	*ft_strpbrk_diff(const char *s, const char *reject);
 char	*ft_strpbrknul(const char *s, const char *accept);
-char	*ft_strpbrknul_diff(const char *s, const char *accept);
+char	*ft_strpbrknul_diff(const char *s, const char *reject);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
