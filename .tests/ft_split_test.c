@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_count_test.c                               :+:      :+:    :+:   */
+/*   ft_split_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 12:34:08 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 12:50:35 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <atf-c.h>
-#include <atf-c/macros.h>
-#include <atf-c/tc.h>
 #include <string.h>
 #include <stdio.h>
 
@@ -37,45 +35,35 @@ typedef struct s_range
 }	t_range;
 t_range _range = {-128, 127};
 
-size_t word_count(const char *s, char sep)
+int	split_cmp(char **split1, char **split2)
 {
-    size_t count;
-    int in_word;
-    
-    // Return 0 if string is NULL
-    if (s == NULL)
-        return (0);
-    
-    count = 0;
-    in_word = 0;
-    
-    while (*s)
-    {
-        // If current char is not separator
-        if (*s != sep)
-        {
-            // If we weren't in a word, we found a new word
-            if (!in_word)
-            {
-                count++;
-                in_word = 1;
-            }
-        }
-        else
-        {
-            // Separator found, we're not in a word anymore
-            in_word = 0;
-        }
-        s++;
-    }
-    
-    return (count);
+	if (!split1 && !split2)
+		return (0);
+	if (!split1)
+		return (-1);
+	if (!split2)
+		return (1);
+	while (!ft_strcmp(*split1, *split2) && *split1)
+	{
+		split1++;
+		split2++;
+	}
+	return (ft_strcmp(*split1, *split2));
+}
+
+void	print_split(char **split, char *sep)
+{
+	printf("%s", *split);
+	while (*++split)
+		printf("%s%s", sep, *split);
+	printf("\n");
+
 }
 
 void	test(char	*tab[], size_t size, t_range range, int flags)
 {
-	size_t	expected;
-	size_t	output;
+	char	**expected;
+	char	**output;
 	char	*color;
 	int		find;
 
@@ -85,17 +73,17 @@ void	test(char	*tab[], size_t size, t_range range, int flags)
 		find = range.min - 1;
 		while (++find <= range.max)
 		{
-			expected = flags & TEST_NULLS ? 0 : word_count(tab[size], find);
-			output = ft_word_count(tab[size], find);
-			color = expected == output ? GREEN : RED;
+			expected = flags & TEST_NULLS ? 0 : split(tab[size], find);
+			output = ft_split(tab[size], find);
+			color = !split_cmp(expected, output) ? GREEN : RED;
 
 			printf("%s", color);
 			printf("Input:   \t%s\t%d\n", tab[size], find);
-			printf("Expected:\t%lu\n", expected);
-			printf("Output:  \t%lu\n", output);
+			printf("Expected:\t"); print_split(expected, ", ");
+			printf("Output:  \t"); print_split(output, ", ");
 			printf("%s", RESET);
 
-			ATF_CHECK_EQ(expected, output);
+			ATF_CHECK(!split_cmp(expected, output));
 			printf("----------\n");
 		}
 	}
