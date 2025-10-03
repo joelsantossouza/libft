@@ -181,3 +181,7 @@ end
 if fs.exists("ft_word_count_test") then
 	atf_test_program{name="ft_word_count_test"}
 end
+
+if fs.exists("ft_freearray_test") then
+	atf_test_program{name="ft_freearray_test"}
+end

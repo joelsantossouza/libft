@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/02 20:26:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 08:55:28 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include <limits.h>
 #include <atf-c.h>
 
-#define NELEM(tab) (sizeof(tab) / sizeof(char *))
+#define TEST_NULL	1<<0
+#define NELEM(tab) (sizeof(tab) / sizeof(t_input))
 #define RED		"\e[0;31m"
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
@@ -27,26 +28,60 @@ char	*tests_titles[] = {
 	"VALID array",
 	"Big input",
 };
+static int	i;
 
-void	test(char *tab[], size_t size)
+typedef struct s_input
 {
-	struct mallinfo2 before;
-	struct mallinfo2 after;
-	char	*color;
+	size_t	nmemb;
+	size_t	size;
+	void	(*fun)(void *);
+}	t_input;
 
+void	test(t_input tab[], size_t size, int flags)
+{
+	struct mallinfo2	before;
+	struct mallinfo2	after;
+	void				**array;
+	void				**parray;
+	char				*color;
+	size_t				j;
+
+	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-
 		before = mallinfo2();
-		color =  ? GREEN : RED;
+
+		if (flags & TEST_NULL)
+			array = 0;
+		else
+		{
+			array = malloc(sizeof(void *) * (tab[size].nmemb + 1));
+			if (array)
+			{
+				parray = array;
+				j = -1;
+				while (++j < tab[size].nmemb)
+				{
+					*parray = malloc(tab[size].size);
+					if (!*parray++)
+						break ;
+				}
+				*parray = 0;
+			}
+		}
+
+		//ft_freearray(array, tab[size].fun);
+
 		after = mallinfo2();
 
+		color =  before.uordblks == after.uordblks ? GREEN : RED;
+
 		printf("%s", color);
-		printf("Input:       \t%s\n", tab[size]);
+		printf("Input:       \t%lu - %lu\n", tab[size].nmemb, tab[size].size);
 		printf("Success Free:\t%s\n", "wait");
 		printf("%s", RESET);
 
-		ATF_CHECK(1);
+		ATF_CHECK(before.uordblks == after.uordblks);
 		printf("----------\n");
 
 		printf("Before: %lu\n", before.uordblks);
@@ -62,11 +97,12 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	char	*tab[] = {
-		0,
+	t_input	tab[] = {
+		{2, 2, free},
 	};
 
-	test(tab, NELEM(tab));
+	i = 0;
+	test(tab, NELEM(tab), 0);
 }
 ATF_TP_ADD_TCS(tp)
 {
