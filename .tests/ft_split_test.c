@@ -6,13 +6,14 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 12:50:35 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:02:14 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <atf-c.h>
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 #define NELEM(tab) (sizeof(tab) / sizeof(char *))
@@ -58,6 +59,53 @@ void	print_split(char **split, char *sep)
 		printf("%s%s", sep, *split);
 	printf("\n");
 
+}
+
+static int	fill(char **vector, char const *str, char delimeter)
+{
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	while (*str)
+	{
+		len = 0;
+		while (*str == delimeter && *str)
+			++str;
+		while (*str != delimeter && *str)
+		{
+			++len;
+			++str;
+		}
+		if (len)
+		{
+			vector[i] = ft_substr(str - len, 0, len);
+			if (!vector[i])
+			{
+				ft_freearray((void **) vector, free);
+				return (1);
+			}
+			++i;
+		}
+	}
+	return (0);
+}
+
+char	**split(char const *s, char c)
+{
+	char	**ptr;
+	size_t	len;
+
+	if (NULL == s)
+		return (NULL);
+	len = ft_word_count(s, c);
+	ptr = malloc(sizeof(char *) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	if (fill(ptr, s, c))
+		return (NULL);
+	ptr[len] = NULL;
+	return (ptr);
 }
 
 void	test(char	*tab[], size_t size, t_range range, int flags)
