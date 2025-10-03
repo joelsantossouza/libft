@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 19:21:58 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 08:16:40 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 12:23:46 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_split(char const *s, char c)
 		*psplit = ft_strndup(start, s - start);
 		if (!*psplit++)
 		{
-			ft_freearray((void **) psplit, free);
+			ft_freearray((void **) split, free);
 			return (0);
 		}
 	}
