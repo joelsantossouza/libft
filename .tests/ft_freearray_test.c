@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 08:55:28 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 09:20:39 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_input
 void	test(t_input tab[], size_t size, int flags)
 {
 	struct mallinfo2	before;
+	struct mallinfo2	between;
 	struct mallinfo2	after;
 	void				**array;
 	void				**parray;
@@ -70,7 +71,10 @@ void	test(t_input tab[], size_t size, int flags)
 			}
 		}
 
-		//ft_freearray(array, tab[size].fun);
+		between = mallinfo2();
+		(void)between;
+
+		ft_freearray(array, tab[size].fun);
 
 		after = mallinfo2();
 
@@ -85,6 +89,7 @@ void	test(t_input tab[], size_t size, int flags)
 		printf("----------\n");
 
 		printf("Before: %lu\n", before.uordblks);
+		printf("Between: %lu\n", between.uordblks);
 		printf("After:  %lu\n", after.uordblks);
 	}
 }
