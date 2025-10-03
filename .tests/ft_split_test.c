@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 13:02:14 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:10:03 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,14 @@ int	split_cmp(char **split1, char **split2)
 
 void	print_split(char **split, char *sep)
 {
-	printf("%s", *split);
-	while (*++split)
-		printf("%s%s", sep, *split);
+	if (!split)
+		printf("(null_array)");
+	else
+	{
+		printf("%s", *split);
+		while (*++split)
+			printf("%s%s", sep, *split);
+	}
 	printf("\n");
 
 }
