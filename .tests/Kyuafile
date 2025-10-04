@@ -193,3 +193,7 @@ end
 if fs.exists("ft_strjoin_test") then
 	atf_test_program{name="ft_strjoin_test"}
 end
+
+if fs.exists("ft_strtrim_test") then
+	atf_test_program{name="ft_strtrim_test"}
+end
