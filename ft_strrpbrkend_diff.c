@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strrpbrkend_diff.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 19:03:22 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/04 18:21:14 by joesanto         ###   ########.fr       */
+/*   Created: 2025/10/04 18:04:02 by joesanto          #+#    #+#             */
+/*   Updated: 2025/10/04 18:18:23 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strrpbrkend_diff(const char *s, const char *reject)
 {
-	if (!s1)
+	const char	*end;
+
+	if (!s || !reject)
 		return (0);
-	s1 = ft_strpbrknul_diff(s1, set);
-	return (ft_strndup(s1, ft_strrpbrkend_diff(s1, set) - s1 + 1));
+	end = s + ft_strlen(s);
+	while (end > s)
+		if (!ft_strchr(reject, *--end))
+			break ;
+	return ((char *) end);
 }

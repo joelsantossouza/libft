@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_test.c                                  :+:      :+:    :+:   */
+/*   ft_strrpbrkend_diff_test.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/04 18:00:22 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/04 18:38:27 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,77 +39,50 @@ typedef struct s_input
 	const char	*little;
 }	t_input;
 
-// ORIGINAL STRTRIM
-
-static int	found(char c, const char *set);
-static char	*search(const char *s, const char *set);
-static char	*rsearch(const char *s, const char *set, size_t len);
-
-char	*strtrim(char const *s1, char const *set)
+char *strrpbrkend_diff(const char *s, const char *reject)
 {
-	char	*arr;
-	char	*start;
-	int		diff;
-	int		i;
-
-	if (!s1)
-		return (0);
-	if (!set)
-		return ((char *) s1);
-	start = search(s1, set);
-	diff = rsearch(s1, set, ft_strlen(s1)) - start;
-	if (diff <= 0)
-		return (ft_strdup(""));
-	arr = malloc(sizeof(char) * (diff + 1));
-	if (!arr)
-		return (NULL);
-	i = 0;
-	while (i < diff)
-	{
-		arr[i] = *start;
-		++i;
-		++start;
-	}
-	arr[i] = 0;
-	return (arr);
+    const char *r;
+    const char *last;
+    
+    // Return NULL if either parameter is NULL
+    if (s == NULL || reject == NULL)
+        return (NULL);
+    
+    // Find the end of the string (points to '\0')
+    last = s;
+    while (*last)
+        last++;
+    
+    // If reject is empty, return last actual character (or '\0' if empty string)
+    if (*reject == '\0')
+    {
+        if (last > s)
+            return ((char *)(last - 1));
+        return ((char *)last);
+    }
+    
+    // Iterate backwards through actual characters (skip '\0')
+    while (last > s)
+    {
+        last--;
+        r = reject;
+        
+        // Check if current character is in reject
+        while (*r)
+        {
+            if (*last == *r)
+                break;
+            r++;
+        }
+        
+        // If we didn't find a match in reject, this char is different
+        if (*r == '\0')
+            return ((char *)last);
+    }
+    
+    // All characters were in reject set, return beginning of string
+    return ((char *)s);
 }
-
-static int	found(char c, const char *set)
-{
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
-}
-
-static char	*search(const char *s, const char *set)
-{
-	while (*s)
-	{
-		if (!found(*s, set))
-			return ((char *)s);
-		s++;
-	}
-	return ((char *)s);
-}
-
-static char	*rsearch(const char *s, const char *set, size_t len)
-{
-	char	*end;
-
-	end = (char *)s + len - 1;
-	while (len--)
-	{
-		if (!found(*end, set))
-			return (end + 1);
-		end--;
-	}
-	return (end);
-}
-// ORIGINAL STRTRIM
 
 void	test(t_input tab[], size_t size)
 {
@@ -120,21 +93,18 @@ void	test(t_input tab[], size_t size)
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = strtrim(tab[size].big, tab[size].little);
-		output = ft_strtrim(tab[size].big, tab[size].little);
-		color = !ft_strcmp(expected, output) ? GREEN : RED;
+		expected = strrpbrkend_diff(tab[size].big, tab[size].little);
+		output = ft_strrpbrkend_diff(tab[size].big, tab[size].little);
+		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t\"%s\" - \"%s\"\n", tab[size].big, tab[size].little);
-		printf("Expected:\t\"%s\"\n", expected);
-		printf("Output:  \t\"%s\"\n", output);
+		printf("Expected:\t(%p) \"%s\"\n", expected, expected);
+		printf("Output:  \t(%p) \"%s\"\n", output, output);
 		printf("%s", RESET_COLOR);
 
-		ATF_CHECK(!ft_strcmp(expected, output));
+		ATF_CHECK_EQ(output, expected);
 		printf("----------\n");
-
-		free(expected);
-		free(output);
 	}
 }
 
