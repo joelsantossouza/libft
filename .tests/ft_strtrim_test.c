@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/04 18:00:22 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/04 18:52:52 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (0);
 	if (!set)
-		return ((char *) s1);
+		return (ft_strdup(s1));
 	start = search(s1, set);
 	diff = rsearch(s1, set, ft_strlen(s1)) - start;
 	if (diff <= 0)
@@ -292,6 +292,7 @@ ATF_TC_HEAD(test03, tc)
 ATF_TC_BODY(test03, tc)
 {
 	t_input	tab[] = {
+		{" foij foiqfj pqoifj pqoifj pqoifj qpoifj qp --------", "- "},
 		{"a", "abc"},
 		{"b", "abcd"},
 		{"", "x"},
