@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/05 19:31:33 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/05 20:25:48 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,45 +32,54 @@ char	*test_titles[] = {
 };
 static int	i;
 
+void	putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
 int	char_cmp(size_t bread1, char *c1, size_t bread2, char *c2)
 {
+	if (!bread1 && !bread2)
+		return (0);
 	if (bread1 != bread2)
 		return (1);
-	return (*c1 == *c2);
+	return (*c1 - *c2);
 }
 
 void	test(char *tab[], int size)
 {
-	char	*output_dst;
-	char	*expected_dst;
+	char	output_dst[5];
+	char	expected_dst[5];
 	char	*color;
 	size_t	len;
-	FILE	*file[2] = {stdout, stderr};
-	int		idx;
 	size_t	bread1;
 	size_t	bread2;
+	int		file;
+	char	template[] = "~/coding/exercises/libft/.tests/XXXXXX";
 
-	srand(time(0));
+	file = mkstemp(template);
+	if (file < 0)
+		return ;
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
 	while (size--)
 	{
 		len = ft_strlen(tab[size]) + 1;
 		while (tab[size] && len--)
 		{
-			idx = rand() % 2;
+			putchar_fd(file, tab[size][len]);
+			lseek(file, -1, SEEK_CUR);
+			bread1 = read(file, expected_dst, 1);
 
-			fprintf(file[idx], "%c", tab[size][len]);
-			bread1 = read(fileno(file[idx]), expected_dst, 1);
-
-			ft_putchar_fd(fileno(file[idx]), tab[size][len]);
-			bread2 = read(fileno(file[idx]), output_dst, 1);
+			ft_putchar_fd(file, tab[size][len]);
+			lseek(file, -1, SEEK_CUR);
+			bread2 = read(file, output_dst, 1);
 
 			color = !char_cmp(bread1, expected_dst, bread2, output_dst) ? GREEN : RED;
 
 			printf("%s", color);
-			printf("Input:   \t%c\n", tab[size][len]);
-			printf("Expected:\t%c\n", *expected_dst);
-			printf("Output:  \t%c\n", *output_dst);
+			printf("Input:   \t%d\n", tab[size][len]);
+			printf("Expected:\t%d\n", *expected_dst);
+			printf("Output:  \t%d\n", *output_dst);
 			printf("%s", RESET_COLOR);
 			
 			ATF_CHECK(!char_cmp(bread1, expected_dst, bread2, output_dst));
