@@ -201,3 +201,7 @@ end
 if fs.exists("ft_strtrim_test") then
 	atf_test_program{name="ft_strtrim_test"}
 end
+
+if fs.exists("ft_strmapi_test") then
+	atf_test_program{name="ft_strmapi_test"}
+end
