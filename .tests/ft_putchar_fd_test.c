@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 16:34:50 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/05 19:31:33 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include <stdlib.h>
 
 #define RED			"\e[0;31m"
@@ -31,32 +32,50 @@ char	*test_titles[] = {
 };
 static int	i;
 
+int	char_cmp(size_t bread1, char *c1, size_t bread2, char *c2)
+{
+	if (bread1 != bread2)
+		return (1);
+	return (*c1 == *c2);
+}
+
 void	test(char *tab[], int size)
 {
 	char	*output_dst;
 	char	*expected_dst;
 	char	*color;
+	size_t	len;
+	FILE	*file[2] = {stdout, stderr};
+	int		idx;
+	size_t	bread1;
+	size_t	bread2;
 
+	srand(time(0));
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
 	while (size--)
 	{
-		if (tab[size])
-			expected_dst = strdup(tab[size]);
-		else
-			expected_dst = 0;
-		output_dst = ft_strdup(tab[size]);
-		color = !ft_strncmp(expected_dst, output_dst, ft_strlen(tab[size]) + 1) ? GREEN : RED;
+		len = ft_strlen(tab[size]) + 1;
+		while (tab[size] && len--)
+		{
+			idx = rand() % 2;
 
-		printf("%s", color);
-		printf("Input:   \t%s\n", tab[size]);
-		printf("Expected:\t%s\n", expected_dst);
-		printf("Output:  \t%s\n", output_dst);
-		printf("%s", RESET_COLOR);
-		
-		ATF_CHECK(!ft_strncmp(expected_dst, output_dst, ft_strlen(tab[size]) + 1));
-		printf("----------\n");
-		free(output_dst);
-		free(expected_dst);
+			fprintf(file[idx], "%c", tab[size][len]);
+			bread1 = read(fileno(file[idx]), expected_dst, 1);
+
+			ft_putchar_fd(fileno(file[idx]), tab[size][len]);
+			bread2 = read(fileno(file[idx]), output_dst, 1);
+
+			color = !char_cmp(bread1, expected_dst, bread2, output_dst) ? GREEN : RED;
+
+			printf("%s", color);
+			printf("Input:   \t%c\n", tab[size][len]);
+			printf("Expected:\t%c\n", *expected_dst);
+			printf("Output:  \t%c\n", *output_dst);
+			printf("%s", RESET_COLOR);
+			
+			ATF_CHECK(!char_cmp(bread1, expected_dst, bread2, output_dst));
+			printf("----------\n");
+		}
 	}
 }
 // TEST 00 --> NULL STRINGS
