@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/05 20:25:48 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/05 20:46:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	test(char *tab[], int size)
 	size_t	bread1;
 	size_t	bread2;
 	int		file;
-	char	template[] = "~/coding/exercises/libft/.tests/XXXXXX";
+	char	template[] = "/home/joel/coding/exercises/libft/.tests/XXXXXX";
 
 	file = mkstemp(template);
 	if (file < 0)
@@ -66,11 +66,11 @@ void	test(char *tab[], int size)
 		len = ft_strlen(tab[size]) + 1;
 		while (tab[size] && len--)
 		{
-			putchar_fd(file, tab[size][len]);
+			putchar_fd(tab[size][len], file);
 			lseek(file, -1, SEEK_CUR);
 			bread1 = read(file, expected_dst, 1);
 
-			ft_putchar_fd(file, tab[size][len]);
+			ft_putchar_fd(tab[size][len], file);
 			lseek(file, -1, SEEK_CUR);
 			bread2 = read(file, output_dst, 1);
 
@@ -86,6 +86,7 @@ void	test(char *tab[], int size)
 			printf("----------\n");
 		}
 	}
+	unlink(template);
 }
 // TEST 00 --> NULL STRINGS
 ATF_TC(test00);
