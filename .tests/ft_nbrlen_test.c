@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 18:18:49 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 19:46:25 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
 
-size_t nbrlen(ssize_t nbr)
+size_t nbrlen(ssize_t nbr, size_t base)
 {
     size_t len;
 
@@ -30,7 +30,7 @@ size_t nbrlen(ssize_t nbr)
         nbr = -nbr;
     while (nbr != 0)
     {
-        nbr /= 10;
+        nbr /= base;
         len++;
     }
     return (len);
@@ -41,21 +41,26 @@ void	test(ssize_t min, ssize_t max)
 	size_t	output;
 	size_t	expected;
 	char	*color;
+	int		base;
 
 	while (min <= max)
 	{
-		expected = nbrlen(min);
-		output = ft_nbrlen(min);
-		color = expected == output ? GREEN : RED;
+		base = -1;
+		while (++base <= 16)
+		{
+			expected = nbrlen(min, base);
+			output = ft_nbrlen(min, base);
+			color = expected == output ? GREEN : RED;
 
-		printf("%s", color);
-		printf("Input:   \t%ld\n", min);
-		printf("Expected:\t%lu\n", expected);
-		printf("Output:  \t%lu\n", output);
-		printf("%s", RESET);
+			printf("%s", color);
+			printf("Input:   \t%ld - %d\n", min, base);
+			printf("Expected:\t%lu\n", expected);
+			printf("Output:  \t%lu\n", output);
+			printf("%s", RESET);
 
-		ATF_CHECK_EQ(expected, output);
-		printf("----------\n");
+			ATF_CHECK_EQ(expected, output);
+			printf("----------\n");
+		}
 		min++;
 	}
 }
