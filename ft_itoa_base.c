@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 19:39:10 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 20:12:25 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static size_t	get_base(const char *base)
 char	*ft_itoa_base(int nbr, const char *base)
 {
 	unsigned int	u_nbr;
+	unsigned int	is_neg;
 	char			*str;
 	size_t			base_len;
 	size_t			nbr_len;
-	char			is_neg;
 
 	base_len = get_base(base);
 	if (base_len <= 1)
