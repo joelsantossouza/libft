@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 19:46:25 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 19:50:22 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ size_t nbrlen(ssize_t nbr, size_t base)
 {
     size_t len;
 
+    if (base == 0)
+        return (0);
     if (nbr == 0)
         return (1);
     len = 0;
