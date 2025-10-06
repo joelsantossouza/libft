@@ -6,12 +6,11 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 18:03:03 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:07:21 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <ctype.h>
 #include <stdio.h>
 #include <limits.h>
 #include <atf-c.h>
@@ -19,6 +18,21 @@
 #define RED		"\e[0;31m"
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
+
+size_t nbrlen(size_t nbr)
+{
+    size_t len;
+
+    if (nbr == 0)
+        return (1);
+    len = 0;
+    while (nbr > 0)
+    {
+        nbr /= 10;
+        len++;
+    }
+    return (len);
+}
 
 void	test(ssize_t min, ssize_t max)
 {

@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/05 22:04:57 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/05 22:12:14 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	test(char *tab[], int size)
 		printf("Output:  \t%.*s", (int) len, output_dst);
 		printf("%s", RESET_COLOR);
 		
-		ATF_CHECK(!ft_strncmp(tab[size], output_dst, len - 1) && output_dst[len - 1] == '\n');
+		ATF_CHECK(!ft_strncmp(tab[size], output_dst, len - 1)
+					&& output_dst[len - 1] == '\n');
 		printf("----------\n");
 
 		free(output_dst);
