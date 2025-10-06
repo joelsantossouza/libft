@@ -6,9 +6,11 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:50:52 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 18:53:55 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 20:09:06 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_itoa(int n)
 {
