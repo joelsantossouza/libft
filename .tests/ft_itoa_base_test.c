@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 20:41:37 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 20:48:16 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 char	*tests_titles[] = {
 	"Null inputs",
 	"Empty inputs",
-	"Invalid base and No match in str",
-	"Valid base and Valid str",
+	"Invalid base",
+	"Valid base",
 };
 static int	i;
 
@@ -98,7 +98,7 @@ ATF_TC_BODY(test01, tc)
 	test(_range, tab, NELEM(tab));
 }
 
-// TEST 02 --> INVALID BASE AND NO MATCH IN STR
+// TEST 02 --> INVALID BASE
 ATF_TC(test02);
 ATF_TC_HEAD(test02, tc)
 {
@@ -149,7 +149,7 @@ ATF_TC_BODY(test02, tc)
 	test(_range, tab, NELEM(tab));
 }
 
-// TEST 03 --> VALID BASE AND VALID STRING
+// TEST 03 --> VALID BASE
 ATF_TC(test03);
 ATF_TC_HEAD(test03, tc)
 {
@@ -163,9 +163,11 @@ ATF_TC_BODY(test03, tc)
 		"01234567",
 		"01",
 	};
+	t_range	custom_range = {-2147483648, -2147483647};
 
 	i = 3;
 	test(_range, tab2, NELEM(tab2));
+	test(custom_range, tab2, NELEM(tab2));
 }
 
 // TEST PROGRAM
