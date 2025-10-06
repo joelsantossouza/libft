@@ -6,14 +6,14 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 17:29:11 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:14:24 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
+# include <sys/types.h>
 
 int		ft_islower(int c);
 int		ft_isupper(int c);
@@ -72,6 +72,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	ft_freearray(void **array, void (*free_memb)(void *));
 size_t	ft_word_count(char const *s, char c);
 char	**ft_split(char const *s, char c);
-size_t	ft_nbrlen(size_t nbr);
+size_t	ft_nbrlen(ssize_t nbr);
 
 #endif

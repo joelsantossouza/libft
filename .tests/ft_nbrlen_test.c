@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 18:07:21 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:18:49 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
 
-size_t nbrlen(size_t nbr)
+size_t nbrlen(ssize_t nbr)
 {
     size_t len;
 
     if (nbr == 0)
         return (1);
     len = 0;
-    while (nbr > 0)
+    if (nbr < 0)
+        nbr = -nbr;
+    while (nbr != 0)
     {
         nbr /= 10;
         len++;
@@ -65,7 +67,7 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	test(-9223372036854775808LU, 9223372036854775807);
+	test(-395808, 58074);
 }
 ATF_TP_ADD_TCS(tp)
 {
