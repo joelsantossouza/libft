@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/04 18:20:20 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/06 17:29:24 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ ft_tolower.c ft_strchr.c ft_strrchr.c ft_strchrnul.c ft_strchrnul_diff.c ft_atoi
 ft_strstr_diff.c ft_strstrnul.c ft_strstrnul_diff.c ft_strnstr.c ft_strpbrk.c ft_strpbrk_diff.c \
 ft_strpbrknul.c ft_strpbrknul_diff.c ft_strrpbrkend_diff.c ft_calloc.c ft_strdup.c ft_strndup.c \
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_strmapi.c ft_substr.c \
-ft_strjoin.c ft_strtrim.c ft_freearray.c ft_word_count.c ft_split.c
+ft_strjoin.c ft_strtrim.c ft_freearray.c ft_word_count.c ft_split.c ft_nbrlen.c
 
 AR=ar rcs
 CC=cc
