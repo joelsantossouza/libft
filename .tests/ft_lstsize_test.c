@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 19:23:16 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:34:53 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <atf-c.h>
 
 #define RED		"\e[0;31m"
@@ -56,6 +57,28 @@ void	test(t_list *tab[], size_t size)
 	}
 }
 
+t_list	*init_list(char *head, ...)
+{
+	t_list	*list;
+	t_list	*new;
+	va_list	args;
+	void	*value;
+
+	list = 0;
+	va_start(args, head);
+	value = va_arg(args, void *);
+	while (value)
+	{
+		new = ft_lstnew(value);
+		if (!new)
+			continue ;
+		ft_lstadd_front(&list, new);
+		value = va_arg(args, void *);
+	}
+	va_end(args);
+	return (list);
+}
+
 ATF_TC(test00);
 ATF_TC_HEAD(test00, tc)
 {
@@ -63,7 +86,20 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
+	int	nbr1;
+	int	nbr2;
+
+	t_list	*lst1 = init_list("lst1", "This", "is", "a", "big", "test", &nbr1, &nbr2, 0);
+	t_list	*lst2 = init_list("lst1", "This", "is", "a", "b", 0);
+	t_list	*lst3 = init_list("lst1", "a", "big", "test", &nbr1, &nbr2, 0);
+	t_list	*lst4 = init_list("lst1", 0);
+
 	t_list	*tab[] = {
+		0,
+		lst1,
+		lst2,
+		lst3,
+		lst4,
 	};
 
 	test(tab, NELEM(tab));
