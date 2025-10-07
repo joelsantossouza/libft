@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 14:25:09 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:39:35 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_list	*init_list(void *tab[], size_t size)
 	size_t	i;
 
 	i = -1;
+	list = 0;
 	while (++i < size)
 	{
 		new = ft_lstnew(tab[i]);
