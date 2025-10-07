@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 15:39:35 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:28:00 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ t_list	*init_list(void *tab[], size_t size)
 {
 	t_list	*list;
 	t_list	*new;
-	size_t	i;
 
-	i = -1;
 	list = 0;
-	while (++i < size)
+	while (size--)
 	{
-		new = ft_lstnew(tab[i]);
+		new = ft_lstnew(tab[size]);
 		if (!new)
 			continue ;
 		ft_lstadd_front(&list, new);
@@ -39,13 +37,13 @@ t_list	*init_list(void *tab[], size_t size)
 	return (list);
 }
 
-int	lst_cmp(void *tab[], t_list *list)
+int	lst_cmp(void *tab[], t_list *list, size_t size)
 {
 	if (!tab && !list)
 		return (0);
 	if (!tab != !list)
 		return (1);
-	while (*tab == list->content)
+	while (size-- > 1 && *tab == list->content)
 	{
 		tab++;
 		list = list->next;
@@ -53,17 +51,24 @@ int	lst_cmp(void *tab[], t_list *list)
 	return (*tab - list->content);
 }
 
-void	print_pointers(void	**tab, size_t size)
+void	print_pointers(void	**tab, size_t size, int rev)
 {
-	while (size--)
-		printf("%p%s", tab[size], !size ? "" : ", ");
+	if (!rev)
+		while (size--)
+			printf("%p%s", tab[size], !size ? "" : ", ");
+	else
+		while (size--)
+			printf("%p%s", *tab++, !size ? "" : ", ");
 	printf("\n");
 }
 
 void	print_list(t_list *begin)
 {
 	while (begin)
+	{
 		printf("%p%s", begin->content, !begin->next ? "" : ", ");
+		begin = begin->next;
+	}
 	printf("\n");
 }
 
@@ -76,15 +81,15 @@ void	test(void *tab[], size_t size)
 	while (size--)
 	{
 		output = init_list(tab, size);
-		color = !lst_cmp(tab, output) ? GREEN : RED;
+		color = (!size && !output) || !lst_cmp(tab, output, size) ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t"); print_pointers(tab, size);
-		printf("Expected:\t"); print_pointers(tab, size);
+		printf("Input:   \t"); print_pointers(tab, size, 0);
+		printf("Expected:\t"); print_pointers(tab, size, 1);
 		printf("Output:  \t"); print_list(output);
 		printf("%s", RESET);
 
-		ATF_CHECK(!lst_cmp(tab, output));
+		ATF_CHECK((!size && !output) || !lst_cmp(tab, output, size));
 		printf("----------\n");
 
 		ft_lstclear(&output, 0);

@@ -241,3 +241,7 @@ end
 if fs.exists("ft_lstnew_test") then
 	atf_test_program{name="ft_lstnew_test"}
 end
+
+if fs.exists("ft_lstadd_front_test") then
+	atf_test_program{name="ft_lstadd_front_test"}
+end
