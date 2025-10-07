@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/07 02:01:53 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/07 02:10:22 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,19 @@ ft_strpbrknul.c ft_strpbrknul_diff.c ft_strrpbrkend_diff.c ft_calloc.c ft_strdup
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_strmapi.c ft_substr.c \
 ft_strjoin.c ft_strtrim.c ft_freearray.c ft_word_count.c ft_split.c ft_nbrlen.c ft_itoa_base.c ft_itoa.c \
 
-BONUS=ft_lstnew.c ft_lstadd_front
+BONUS=ft_lstnew.c ft_lstadd_front.c
 
 AR=ar rcs
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g
 OBJS=$(SRCS:.c=.o)
+BONUS_OBJS=$(BONUS:.c=.o)
 HEADER=libft.h
 
 all: $(NAME)
 
-bonus: $(BONUS:.c=.o) $(NAME)
-	$(AR) $(NAME) $<
+bonus: $(NAME) $(BONUS_OBJS)
+	$(AR) $< $(BONUS_OBJS)
 
 $(NAME): $(OBJS)
 	$(AR) $@ $^
