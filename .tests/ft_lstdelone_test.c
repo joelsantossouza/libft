@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 14:42:13 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 14:43:33 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(void)
 	t_input	test00[] = {
 		{0, 0},
 		{0, free},
+		{node1, 0},
+		{node2, free},
 	};
 
 	test(test00, NELEM(test00));
