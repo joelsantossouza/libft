@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 00:49:08 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 01:52:57 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	test(void *tab[], size_t size)
 		color = output->content == tab[size] && !output->next ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t%p", tab[size]);
-		printf("Expected:\t%p - (null)\n", tab[size]);
+		printf("Input:   \t%p\n", tab[size]);
+		printf("Expected:\t%p - (nil)\n", tab[size]);
 		printf("Output:  \t%p - %p\n", output->content, output->next);
 		printf("%s", RESET);
 
