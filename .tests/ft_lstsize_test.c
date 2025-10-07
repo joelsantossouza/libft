@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 19:18:24 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:23:16 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 #define RESET	"\e[0m"
 #define NELEM(tab) (sizeof(tab) / sizeof(t_list *))
 
+void    print_list(t_list *begin)                                                                                                                                                             
+{                                                                                                                                                                                             
+	while (begin)                                                                                                                                                                         
+	{                                                                                                                                                                                     
+		printf("%p%s", begin->content, !begin->next ? "" : ", ");                                                                                                                     
+		begin = begin->next;                                                                                                                                                          
+	}                                                                                                                                                                                     
+	printf("\n");                                                                                                                                                                         
+} 
+
 void	test(t_list *tab[], size_t size)
 {
 	int		output;
@@ -34,15 +44,15 @@ void	test(t_list *tab[], size_t size)
 		color = output == expected ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t%p\n", tab[size]);
-		printf("Expected:\t%p - (nil)\n", tab[size]);
-		printf("Output:  \t%p - %p\n", output->content, output->next);
+		printf("Input:   \t"); print_list(tab[size]);
+		printf("Expected:\t%d\n", expected);
+		printf("Output:  \t%d\n", output);
 		printf("%s", RESET);
 
-		ATF_CHECK(output->content == tab[size] && !output->next);
+		ATF_CHECK(output == expected);
 		printf("----------\n");
 
-		free(output);
+		ft_lstclear(&tab[size], 0);
 	}
 }
 
@@ -53,17 +63,7 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	char	*str = "This is a test";
-	int		nbr = 42;
-	char	chr = 'Z';
-	t_list	*node = ft_lstnew(str);
-
-	void	*tab[] = {
-		0,
-		str,
-		&nbr,
-		&chr,
-		node,
+	t_list	*tab[] = {
 	};
 
 	test(tab, NELEM(tab));
