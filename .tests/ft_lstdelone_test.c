@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 14:43:33 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/07 14:50:37 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	main(void)
 	printf("--- For this test please use Valgrind! ---\n\n");
 
 	t_list	*node1 = ft_lstnew("This is a test");
-	t_list	*node2 = ft_lstnew(node1);
+	t_list	*tmp = ft_lstnew("tmp");
+	t_list	*node2 = ft_lstnew(tmp);
 
 	t_input	test00[] = {
 		{0, 0},
