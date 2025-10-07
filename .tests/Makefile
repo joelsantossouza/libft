@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 12:13:42 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/05 21:55:45 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/07 14:44:37 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ ft_%_test.o: ft_%_test.c
 	$(CC) $(FLAGS) $(EXTRA) -c $< -o $@ -I$(HEADER_DIR)
 
 $(LIB_DIR)/lib%.a: $(wildcard $(LIB_DIR)/*.c)
-	make -C ..
+	make bonus -C ..
 
 clean:
 	rm -f $(OBJS)

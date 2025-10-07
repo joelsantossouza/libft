@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/07 14:30:16 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/07 14:46:38 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $@ $^
+	$(AR) $(NAME) $^
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
