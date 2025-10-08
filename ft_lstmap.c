@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 15:04:59 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/08 15:14:18 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:28:50 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&new, del);
 			return (0);
 		}
-		ft_lstadd_front(&new, node);
+		ft_lstadd_back(&new, node);
 		lst = lst->next;
 	}
 	return (new);
