@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/01 15:59:27 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/08 13:22:18 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	test_expect(t_input tab[], int size, int flags)
 			if (!output_dst)
 				return ;
 		}
-		expected = output_dst;
+		expected = tab[size].src ? output_dst : 0;
 		output = ft_stpcpy(output_dst, tab[size].src);
 		color = expected == output ? GREEN : RED;
 
