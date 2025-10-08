@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/07 19:34:53 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/08 08:55:53 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ void    print_list(t_list *begin)
 	}                                                                                                                                                                                     
 	printf("\n");                                                                                                                                                                         
 } 
+
+int lstsize(t_list *lst)
+{
+    int count;
+    
+    count = 0;
+    while (lst != NULL)
+    {
+        count++;
+        lst = lst->next;
+    }
+    return (count);
+}
 
 void	test(t_list *tab[], size_t size)
 {
