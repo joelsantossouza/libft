@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/08 10:29:15 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/08 15:15:51 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_s
 ft_strjoin.c ft_strtrim.c ft_freearray.c ft_word_count.c ft_split.c ft_nbrlen.c ft_itoa_base.c ft_itoa.c \
 
 BONUS=ft_lstnew.c ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-ft_lstiter.c
+ft_lstiter.c ft_lstmap.c
 
 AR=ar rcs
 CC=cc
