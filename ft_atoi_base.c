@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/29 16:24:20 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 15:58:23 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,31 @@ static size_t	get_base(const char *base)
 	return (p - base);
 }
 
-int	ft_atoi_base(const char *nptr, const char *base)
+int	ft_atoi_base(const char *nptr, char **endptr, const char *base)
 {
 	size_t	base_len;
 	char	*found;
 	char	sign;
 	int		n;
 
-	base_len = get_base(base);
-	if (!nptr || base_len <= 1)
-		return (0);
-	while (ft_isspace(*nptr))
-		nptr++;
-	sign = 1;
-	if (*nptr == '-' || *nptr == '+')
-		if (*nptr++ == '-')
-			sign = -1;
 	n = 0;
-	found = ft_memchr(base, *nptr, base_len);
-	while (found)
+	sign = 1;
+	base_len = get_base(base);
+	if (nptr && base_len > 1)
 	{
-		n = n * base_len + (found - base);
-		found = ft_memchr(base, *++nptr, base_len);
+		while (ft_isspace(*nptr))
+			nptr++;
+		if (*nptr == '-' || *nptr == '+')
+			if (*nptr++ == '-')
+				sign = -1;
+		found = ft_memchr(base, *nptr, base_len);
+		while (found)
+		{
+			n = n * base_len + (found - base);
+			found = ft_memchr(base, *++nptr, base_len);
+		}
 	}
+	if (endptr)
+		*endptr = (char *) nptr;
 	return (n * sign);
 }
