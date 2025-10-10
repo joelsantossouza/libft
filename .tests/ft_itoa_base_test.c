@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 20:48:16 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:24:50 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	test(t_range range, char *tab[], size_t size)
 			output = ft_itoa_base(expected, tab[size]);
 			if (!output)
 				continue ;
-			color = expected == ft_atoi_base(output, tab[size]) ? GREEN : RED;
+			color = expected == ft_atoi_base(output, 0, tab[size]) ? GREEN : RED;
 
 			printf("%s", color);
 			printf("Input:   \t%d - %s\n", expected, tab[size]);
@@ -59,7 +59,7 @@ void	test(t_range range, char *tab[], size_t size)
 			printf("Output:  \t%s\n", output);
 			printf("%s", RESET);
 
-			ATF_CHECK(expected == ft_atoi_base(output, tab[size]));
+			ATF_CHECK(expected == ft_atoi_base(output, 0, tab[size]));
 			printf("----------\n");
 			free(output);
 		}
