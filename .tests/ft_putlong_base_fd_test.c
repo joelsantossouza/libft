@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 22:17:50 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 23:17:52 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ typedef struct s_range
 }	t_range;
 t_range _range = {-12340, 132423};
 
+static size_t   get_base(const char *base)                                                    
+{                                                                                             
+	const char      *p;                                                                   
+
+	if (!base)                                                                            
+		return (0);                                                                   
+	p = base - 1;                                                                         
+	while (*++p)                                                                          
+		if (*p == '+' || *p == '-' || ft_isspace(*p) || ft_strchr(p + 1, *p))         
+			return (0);                                                           
+	return (p - base);                                                                    
+}
+
 void	test(t_range range, char *tab[], size_t size)
 {
 	char	*output_dst;
@@ -43,35 +56,40 @@ void	test(t_range range, char *tab[], size_t size)
 	size_t	len;
 	int		file;
 	char	template[] = "/home/joel/coding/exercises/libft/.tests/XXXXXX";
+	ssize_t	expected;
 
 	file = mkstemp(template);
 	if (file < 0)
 		return ;
 	printf("\n<test ft_putlong_base_fd>\n");
-	while (range.min <= range.max)
+	while (size--)
 	{
-		len = ft_nbrlen(range.min, 10);
-		output_dst = malloc(len + 1);
-		if (!output_dst)
-			continue ;
-		ft_putlong_base_fd(range.min, tab[size], file);
-		lseek(file, -len, SEEK_CUR);
-		read(file, output_dst, len);
-		output_dst[len] = 0;
+		while (range.min <= range.max)
+		{
+			len = get_base(tab[size]) > 1 ? ft_nbrlen(range.min, ft_strlen(tab[size])) : 0;
+			expected = !len ? 0 : range.min;
+			output_dst = malloc(len + 1);
+			if (!output_dst)
+				continue ;
+			ft_putlong_base_fd(range.min, tab[size], file);
+			lseek(file, -len, SEEK_CUR);
+			read(file, output_dst, len);
+			output_dst[len] = 0;
 
-		color = ft_atol_base(output_dst, tab[size]) == range.min ? GREEN : RED;
+			color = ft_atol_base(output_dst, 0, tab[size]) == expected ? GREEN : RED;
 
-		printf("%s", color);
-		printf("Input:   \t%ld\n", range.min);
-		printf("Expected:\t%ld\n", range.min);
-		printf("Output:  \t%.*s\n", (int) len, output_dst);
-		printf("%s", RESET_COLOR);
-		
-		ATF_CHECK(ft_atol_base(output_dst, tab[size]) == range.min);
-		printf("----------\n");
+			printf("%s", color);
+			printf("Input:   \t(%s) %ld\n", tab[size], range.min);
+			printf("Expected:\t%ld\n", expected);
+			printf("Output:  \t%.*s\n", (int) len, output_dst);
+			printf("%s", RESET);
+			
+			ATF_CHECK(ft_atol_base(output_dst, 0, tab[size]) == expected);
+			printf("----------\n");
 
-		free(output_dst);
-		range.min++;
+			free(output_dst);
+			range.min++;
+		}
 	}
 	unlink(template);
 }

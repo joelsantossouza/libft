@@ -118,8 +118,8 @@ if fs.exists("ft_memchr_test") then
 	atf_test_program{name="ft_memchr_test"}
 end
 
-if fs.exists("ft_atoi_base_test") then
-	atf_test_program{name="ft_atoi_base_test"}
+if fs.exists("ft_atol_base_test") then
+	atf_test_program{name="ft_atol_base_test"}
 end
 
 if fs.exists("ft_atoi_test") then
@@ -244,6 +244,10 @@ end
 
 if fs.exists("ft_ipow_test") then
 	atf_test_program{name="ft_ipow_test"}
+end
+
+if fs.exists("ft_putlong_base_fd_test") then
+	atf_test_program{name="ft_putlong_base_fd_test"}
 end
 
 if fs.exists("ft_lstnew_test") then

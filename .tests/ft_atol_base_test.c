@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base_test.c                                :+:      :+:    :+:   */
+/*   ft_atol_base_test.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 16:21:02 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 22:55:43 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ typedef struct s_input_myown
 {
 	const char	*str;
 	const char	*base;
-	int			expected;
+	ssize_t		expected;
 }	t_input_myown;
 
 void	test_libc(t_input_libc tab[], size_t size)
 {
-	int		output;
-	int		expected;
+	ssize_t	output;
+	ssize_t	expected;
 	char	*color;
 	char	*output_end;
 	char	*expected_end;
@@ -53,14 +53,14 @@ void	test_libc(t_input_libc tab[], size_t size)
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = (int) strtol(tab[size].str, &expected_end, ft_strlen(tab[size].base));
-		output = ft_atoi_base(tab[size].str, &output_end, tab[size].base);
+		expected = strtol(tab[size].str, &expected_end, ft_strlen(tab[size].base));
+		output = ft_atol_base(tab[size].str, &output_end, tab[size].base);
 		color = expected == output && expected_end == output_end ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t(%s) %s\n", tab[size].base, tab[size].str);
-		printf("Expected:\t%d - %s\n", expected, expected_end);
-		printf("Output:  \t%d - %s\n", output, output_end);
+		printf("Expected:\t%ld - %s\n", expected, expected_end);
+		printf("Output:  \t%ld - %s\n", output, output_end);
 		printf("%s", RESET);
 
 		ATF_CHECK(expected == output && expected_end == output_end);
@@ -70,21 +70,21 @@ void	test_libc(t_input_libc tab[], size_t size)
 
 void	test_myown(t_input_myown tab[], size_t size)
 {
-	int		expected;
-	int		output;
+	ssize_t	expected;
+	ssize_t	output;
 	char	*color;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
 		expected = tab[size].str && tab[size].base ? tab[size].expected : 0;
-		output = ft_atoi_base(tab[size].str, 0, tab[size].base);
+		output = ft_atol_base(tab[size].str, 0, tab[size].base);
 		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t(%s) %s\n", tab[size].base, tab[size].str);
-		printf("Expected:\t%d\n", expected);
-		printf("Output:  \t%d\n", output);
+		printf("Expected:\t%ld\n", expected);
+		printf("Output:  \t%ld\n", output);
 		printf("%s", RESET);
 
 		ATF_CHECK(expected == output);
