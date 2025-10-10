@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 15:58:23 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 22:20:25 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static size_t	get_base(const char *base)
 	return (p - base);
 }
 
-int	ft_atoi_base(const char *nptr, char **endptr, const char *base)
+ssize_t	ft_atol_base(const char *nptr, char **endptr, const char *base)
 {
 	size_t	base_len;
 	char	*found;
 	char	sign;
-	int		n;
+	ssize_t	n;
 
 	n = 0;
 	sign = 1;

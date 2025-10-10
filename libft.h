@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 20:48:01 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 22:22:10 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 
-int		ft_atoi_base(const char *nptr, char **endptr, const char *base);
+ssize_t	ft_atol_base(const char *nptr, char **endptr, const char *base);
 int		ft_atoi(const char *nptr);
 char	*ft_itoa_base(int nbr, const char *base);
 char	*ft_itoa(int n);
@@ -88,6 +88,7 @@ char	**ft_split(char const *s, char c);
 size_t	ft_digit_count(ssize_t nbr, int base);
 size_t	ft_nbrlen(ssize_t nbr, int base);
 double	ft_ipow(double base, size_t exponent);
+void	ft_putlong_base_fd(ssize_t nbr, const char *base, int fd);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:42:33 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 16:00:41 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 22:22:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_atoi(const char *nptr)
 {
-	return (ft_atoi_base(nptr, 0, "0123456789"));
+	return (ft_atol_base(nptr, 0, "0123456789"));
 }
