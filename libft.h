@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 17:03:54 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 20:48:01 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ size_t	ft_word_count(char const *s, char c);
 char	**ft_split(char const *s, char c);
 size_t	ft_digit_count(ssize_t nbr, int base);
 size_t	ft_nbrlen(ssize_t nbr, int base);
+double	ft_ipow(double base, size_t exponent);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
