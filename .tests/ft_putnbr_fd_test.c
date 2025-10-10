@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 20:55:35 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:56:20 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	test(ssize_t min, ssize_t max)
 	printf("\n<test ft_putnbr_fd>\n");
 	while (min <= max)
 	{
-		len = ft_nbrlen(min, 10) + (min < 0);
+		len = ft_digit_count(min, 10) + (min < 0);
 		output_dst = malloc(len + 1);
 		if (!output_dst)
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/06 20:12:25 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:54:46 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_itoa_base(int nbr, const char *base)
 	if (base_len <= 1)
 		return (0);
 	is_neg = nbr < 0;
-	nbr_len = ft_nbrlen(nbr, base_len) + is_neg;
+	nbr_len = ft_digit_count(nbr, base_len) + is_neg;
 	str = (char *) malloc(sizeof(char) * (nbr_len + 1));
 	if (!str)
 		return (0);
