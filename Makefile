@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/10 23:22:07 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/10 23:47:54 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,11 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -c $< -o $@
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $(NAME) $^
+	@if [ ! -f $(NAME) ] || [ -n "$$(find $^ -newer $(NAME) 2>/dev/null)" ]; then \
+		$(AR) $(NAME) $^; \
+	else \
+		echo "make: Nothing to be done for 'bonus'."; \
+	fi
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
