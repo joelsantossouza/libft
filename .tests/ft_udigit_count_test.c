@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_digit_count_test.c                              :+:      :+:    :+:   */
+/*   ft_udigit_count_test.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/11 09:35:51 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/11 09:39:07 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,15 @@
 #define GREEN	"\e[0;32m"
 #define RESET	"\e[0m"
 
-size_t digit_count(ssize_t nbr, unsigned int base)
-{
-    size_t len;
+size_t udigit_count(size_t value, unsigned int base) {
+    if (base < 2) return 0; // invalid base
 
-    if (base < 2)
-        return (0);
-    if (nbr == 0)
-        return (1);
-    len = 0;
-    if (nbr < 0)
-        nbr = -nbr;
-    while (nbr != 0)
-    {
-        nbr /= base;
-        len++;
+    size_t count = 1; // at least one digit (for 0)
+    while (value >= base) {
+        value /= base;
+        count++;
     }
-    return (len);
+    return count;
 }
 
 void	test(ssize_t min, ssize_t max)
@@ -50,8 +42,8 @@ void	test(ssize_t min, ssize_t max)
 		base = -1;
 		while (++base <= 16)
 		{
-			expected = digit_count(min, base);
-			output = ft_digit_count(min, base);
+			expected = udigit_count(min, base);
+			output = ft_udigit_count(min, base);
 			color = expected == output ? GREEN : RED;
 
 			printf("%s", color);
