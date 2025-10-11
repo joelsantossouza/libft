@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/11 09:52:51 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/11 10:28:55 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	test(t_range range, char *tab[], size_t size)
 	{
 		while (range.min <= range.max)
 		{
-			len = get_base(tab[size]) > 1 ? ft_nbrlen(range.min, ft_strlen(tab[size])) : 0;
+			len = get_base(tab[size]) > 1 ? ft_udigit_count(range.min, ft_strlen(tab[size])) : 0;
 			expected = !len ? 0 : range.min;
 			output_dst = malloc(len + 1);
 			if (!output_dst)
@@ -80,7 +80,7 @@ void	test(t_range range, char *tab[], size_t size)
 
 			printf("%s", color);
 			printf("Input:   \t(%s) %ld\n", tab[size], range.min);
-			printf("Expected:\t%ld\n", expected);
+			printf("Expected:\t%lu\n", expected);
 			printf("Output:  \t%.*s\n", (int) len, output_dst);
 			printf("%s", RESET);
 			
