@@ -122,6 +122,10 @@ if fs.exists("ft_atol_base_test") then
 	atf_test_program{name="ft_atol_base_test"}
 end
 
+if fs.exists("ft_atoul_base_test") then
+	atf_test_program{name="ft_atoul_base_test"}
+end
+
 if fs.exists("ft_atoi_test") then
 	atf_test_program{name="ft_atoi_test"}
 end

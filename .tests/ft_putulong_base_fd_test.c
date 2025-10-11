@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/10 23:17:52 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/11 09:52:51 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	test(t_range range, char *tab[], size_t size)
 	size_t	len;
 	int		file;
 	char	template[] = "/home/joel/coding/exercises/libft/.tests/XXXXXX";
-	ssize_t	expected;
+	size_t	expected;
 
 	file = mkstemp(template);
 	if (file < 0)
@@ -71,12 +71,12 @@ void	test(t_range range, char *tab[], size_t size)
 			output_dst = malloc(len + 1);
 			if (!output_dst)
 				continue ;
-			ft_putlong_base_fd(range.min, tab[size], file);
+			ft_putulong_base_fd(range.min, tab[size], file);
 			lseek(file, -len, SEEK_CUR);
 			read(file, output_dst, len);
 			output_dst[len] = 0;
 
-			color = ft_atol_base(output_dst, 0, tab[size]) == expected ? GREEN : RED;
+			color = ft_atoul_base(output_dst, 0, tab[size]) == expected ? GREEN : RED;
 
 			printf("%s", color);
 			printf("Input:   \t(%s) %ld\n", tab[size], range.min);
@@ -84,7 +84,7 @@ void	test(t_range range, char *tab[], size_t size)
 			printf("Output:  \t%.*s\n", (int) len, output_dst);
 			printf("%s", RESET);
 			
-			ATF_CHECK(ft_atol_base(output_dst, 0, tab[size]) == expected);
+			ATF_CHECK(ft_atoul_base(output_dst, 0, tab[size]) == expected);
 			printf("----------\n");
 
 			free(output_dst);
