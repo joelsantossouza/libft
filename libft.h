@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/11 09:21:18 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/11 09:29:59 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ size_t	ft_word_count(char const *s, char c);
 char	**ft_split(char const *s, char c);
 size_t	ft_digit_count(ssize_t nbr, unsigned int base);
 size_t	ft_nbrlen(ssize_t nbr, unsigned int base);
+size_t	ft_udigit_count(size_t nbr, unsigned int base);
 double	ft_ipow(double base, size_t exponent);
 void	ft_putlong_base_fd(ssize_t nbr, const char *base, int fd);
 void	ft_putulong_base_fd(size_t nbr, const char *base, int fd);
