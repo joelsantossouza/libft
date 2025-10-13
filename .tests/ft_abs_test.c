@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/13 14:19:07 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:23:30 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ ATF_TC_HEAD(test00, tc)
 }
 ATF_TC_BODY(test00, tc)
 {
-	test(-100, 129);
+	test(-123424252983, -1123424252980);
+	test(-1000, 129);
 	test(0, 128);
 }
 ATF_TP_ADD_TCS(tp)
