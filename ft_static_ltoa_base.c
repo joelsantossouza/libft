@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:57:29 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/13 15:19:05 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:58:56 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ size_t	ft_static_ltoa_base(ssize_t nbr, char **sptr, const char *base)
 {
 	static char	buf[21];
 	const char	*begin = buf + (nbr < 0);
-	size_t	u_nbr;
-	size_t	base_len;
-	size_t	nbr_len;
+	size_t		u_nbr;
+	size_t		base_len;
+	size_t		nbr_len;
 
 	*sptr = 0;
 	base_len = get_base(base);

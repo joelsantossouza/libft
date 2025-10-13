@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:57:29 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/13 15:26:17 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:58:40 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static size_t	get_base(const char *base)
 size_t	ft_static_ultoa_base(size_t nbr, char **sptr, const char *base)
 {
 	static char	buf[21];
-	size_t	base_len;
-	size_t	nbr_len;
+	size_t		base_len;
+	size_t		nbr_len;
 
 	*sptr = 0;
 	base_len = get_base(base);
