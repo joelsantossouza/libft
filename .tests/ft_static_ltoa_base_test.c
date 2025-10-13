@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/13 14:31:58 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:20:35 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,40 @@ typedef struct s_range
 	ssize_t	min;
 	ssize_t	max;
 }	t_range;
-t_range _range = {-12340, 132423};
+t_range _range = {-1234, 1324};
+
+static size_t   get_base(const char *base)
+{
+	const char      *p;
+
+	if (!base)
+		return (0);
+	p = base - 1;
+	while (*++p)
+		if (*p == '+' || *p == '-' || ft_isspace(*p) || ft_strchr(p + 1, *p))
+			return (0);
+	return (p - base);
+}
 
 void	test(t_range range, char *tab[], size_t size)
 {
 	ssize_t	expected;
+	ssize_t	input;
 	char	*output;
 	char	*color;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
 	{
-		expected = range.min - 1;
-		while (++expected <= range.max)
+		input = range.min - 1;
+		while (++input <= range.max)
 		{
-			ft_static_ltoa_base(expected, &output, tab[size]);
+			expected = get_base(tab[size]) < 2 ? 0 : input;
+			ft_static_ltoa_base(input, &output, tab[size]);
 			color = expected == ft_atol_base(output, 0, tab[size]) ? GREEN : RED;
 
 			printf("%s", color);
-			printf("Input:   \t%ld - %s\n", expected, tab[size]);
+			printf("Input:   \t%ld - %s\n", input, tab[size]);
 			printf("Expected:\t%ld (In decimal)\n", expected);
 			printf("Output:  \t%s\n", output);
 			printf("%s", RESET);

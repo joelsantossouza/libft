@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:57:29 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/13 14:12:32 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:19:05 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ size_t	ft_static_ltoa_base(ssize_t nbr, char **sptr, const char *base)
 	nbr_len = ft_nbrlen(nbr, base_len);
 	u_nbr = ft_abs(nbr);
 	*sptr = buf + nbr_len;
-	*sptr = 0;
+	**sptr = 0;
 	buf[0] = '-';
 	while ((*sptr)-- > begin)
 	{
 		**sptr = base[u_nbr % base_len];
 		u_nbr /= base_len;
 	}
+	*sptr = buf;
 	return (nbr_len);
 }
