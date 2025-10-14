@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/14 19:30:20 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/14 20:11:03 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ ft_lstiter.c ft_lstmap.c
 
 AR=ar rcs
 CC=cc
-FLAGS=-Wall -Wextra -Werror -g -03
+FLAGS=-Wall -Wextra -Werror -g -O3
 OBJS=$(SRCS:.c=.o)
 BONUS_OBJS=$(BONUS:.c=.o)
 HEADER=libft.h
