@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 15:04:59 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/08 15:28:50 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 10:59:44 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new;
 	t_list	*node;
+	void	*content;
 
 	if (!f)
 		return (0);
 	new = 0;
 	while (lst)
 	{
-		node = ft_lstnew(f(lst->content));
+		content = f(lst->content);
+		node = ft_lstnew(content);
 		if (!node)
 		{
+			if (del)
+				del(content);
 			ft_lstclear(&new, del);
 			return (0);
 		}
