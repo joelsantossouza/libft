@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/05 21:22:48 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:31:22 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	test(char *tab[], int size)
 {
 	char	*output_dst;
 	char	*color;
+	ssize_t	expected;
+	ssize_t	output;
 	size_t	len;
 	int		file;
 	char	template[] = "/home/joel/coding/exercises/libft/.tests/XXXXXX";
@@ -46,15 +48,18 @@ void	test(char *tab[], int size)
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
 	while (size--)
 	{
+		if (!tab[size])
+			tab[size] = "(nil)";
 		len = ft_strlen(tab[size]);
+		expected = write(1, tab[size], len);
 		output_dst = malloc(len);
 		if (!output_dst)
 			continue ;
-		ft_putstr_fd(tab[size], file);
+		output = ft_putstr_fd(tab[size], file);
 		lseek(file, -len, SEEK_CUR);
 		read(file, output_dst, len);
 
-		color = !ft_strncmp(tab[size], output_dst, len) ? GREEN : RED;
+		color = expected == output && !ft_strncmp(tab[size], output_dst, len) ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t%s\n", tab[size]);
@@ -62,7 +67,7 @@ void	test(char *tab[], int size)
 		printf("Output:  \t%.*s\n", (int) len, output_dst);
 		printf("%s", RESET_COLOR);
 		
-		ATF_CHECK(!ft_strncmp(tab[size], output_dst, len));
+		ATF_CHECK(expected == output && !ft_strncmp(tab[size], output_dst, len));
 		printf("----------\n");
 
 		free(output_dst);

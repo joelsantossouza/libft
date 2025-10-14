@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/14 18:15:12 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:22:05 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_itoa_base(int nbr, const char *base);
 char	*ft_itoa(int n);
 
 ssize_t	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+ssize_t	ft_putstr_fd(const char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
