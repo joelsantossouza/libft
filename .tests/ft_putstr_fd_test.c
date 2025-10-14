@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/14 18:31:22 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:09:50 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	test(char *tab[], int size)
 	size_t	len;
 	int		file;
 	char	template[] = "/home/joel/coding/exercises/libft/.tests/XXXXXX";
+	char	*tmp;
 
 	file = mkstemp(template);
 	if (file < 0)
@@ -48,10 +49,9 @@ void	test(char *tab[], int size)
 	printf("\n<test%02d> %s\n", i, test_titles[i]);
 	while (size--)
 	{
-		if (!tab[size])
-			tab[size] = "(nil)";
-		len = ft_strlen(tab[size]);
-		expected = write(1, tab[size], len);
+		tmp = tab[size] ? tab[size] : "(null)";
+		len = ft_strlen(tmp);
+		expected = write(1, tmp, len);
 		output_dst = malloc(len);
 		if (!output_dst)
 			continue ;
@@ -59,15 +59,15 @@ void	test(char *tab[], int size)
 		lseek(file, -len, SEEK_CUR);
 		read(file, output_dst, len);
 
-		color = expected == output && !ft_strncmp(tab[size], output_dst, len) ? GREEN : RED;
+		color = expected == output && !ft_strncmp(tmp, output_dst, len) ? GREEN : RED;
 
 		printf("%s", color);
 		printf("Input:   \t%s\n", tab[size]);
-		printf("Expected:\t%s\n", !tab[size] ? "" : tab[size]);
+		printf("Expected:\t%s\n", tmp);
 		printf("Output:  \t%.*s\n", (int) len, output_dst);
 		printf("%s", RESET_COLOR);
 		
-		ATF_CHECK(expected == output && !ft_strncmp(tab[size], output_dst, len));
+		ATF_CHECK(expected == output && !ft_strncmp(tmp, output_dst, len));
 		printf("----------\n");
 
 		free(output_dst);
