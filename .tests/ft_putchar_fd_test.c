@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/05 20:46:44 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:16:29 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	test(char *tab[], int size)
 {
 	char	output_dst[5];
 	char	expected_dst[5];
+	ssize_t	expected;
+	ssize_t	output;
 	char	*color;
 	size_t	len;
 	size_t	bread1;
@@ -66,15 +68,15 @@ void	test(char *tab[], int size)
 		len = ft_strlen(tab[size]) + 1;
 		while (tab[size] && len--)
 		{
-			putchar_fd(tab[size][len], file);
+			expected = write(file,	&tab[size][len], 1); 
 			lseek(file, -1, SEEK_CUR);
 			bread1 = read(file, expected_dst, 1);
 
-			ft_putchar_fd(tab[size][len], file);
+			output = ft_putchar_fd(tab[size][len], file);
 			lseek(file, -1, SEEK_CUR);
 			bread2 = read(file, output_dst, 1);
 
-			color = !char_cmp(bread1, expected_dst, bread2, output_dst) ? GREEN : RED;
+			color = expected == output && !char_cmp(bread1, expected_dst, bread2, output_dst) ? GREEN : RED;
 
 			printf("%s", color);
 			printf("Input:   \t%d\n", tab[size][len]);
@@ -82,7 +84,7 @@ void	test(char *tab[], int size)
 			printf("Output:  \t%d\n", *output_dst);
 			printf("%s", RESET_COLOR);
 			
-			ATF_CHECK(!char_cmp(bread1, expected_dst, bread2, output_dst));
+			ATF_CHECK(expected == output && !char_cmp(bread1, expected_dst, bread2, output_dst));
 			printf("----------\n");
 		}
 	}

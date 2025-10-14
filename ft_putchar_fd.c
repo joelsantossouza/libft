@@ -6,13 +6,13 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:00:52 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/14 18:05:14 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:14:39 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_putchar_fd(char c, int fd)
+ssize_t	ft_putchar_fd(char c, int fd)
 {
 	return (write(fd, &c, 1));
 }
