@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 19:25:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/16 13:05:44 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:07:47 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	test(size_t size)
 		color = expected == output ? GREEN : RED;
 
 		printf("%s", color);
-		printf("Input:   \t%ld - ld\n", a, b);
+		printf("Input:   \t%ld - %ld\n", a, b);
 		printf("Expected:\t%ld\n", expected);
 		printf("Output:  \t%ld\n", output);
 		printf("%s", RESET);
