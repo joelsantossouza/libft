@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/16 12:59:39 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/22 19:29:01 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,17 @@ ft_max.c ft_static_ltoa_base.c ft_static_ultoa_base.c
 BONUS=ft_lstnew.c ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 ft_lstiter.c ft_lstmap.c
 
+FT_PRINTF_DIR=ft_printf
+TYPES_CONFIG_DIR=types_config
+TYPES_CONFIG=$(addprefix $(TYPES_CONFIG_DIR)/, int_config.c uint_config.c str_config.c ptr_config.c \
+chr_config.c perc_config.c)
+FT_PRINTF=$(addprefix $(FT_PRINTF_DIR)/, parsers.c convert_types.c ft_printf.c $(TYPES_CONFIG))
+INCLUDES+=-I. -Ift_printf
+
 AR=ar rcs
 CC=cc
 FLAGS=-Wall -Wextra -Werror -g -O3
-OBJS=$(SRCS:.c=.o)
+OBJS=$(SRCS:.c=.o) $(FT_PRINTF:.c=.o)
 BONUS_OBJS=$(BONUS:.c=.o)
 HEADER=libft.h
 
@@ -38,7 +45,7 @@ $(NAME): $(OBJS)
 	$(AR) $@ $^
 
 %.o: %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 bonus: $(OBJS) $(BONUS_OBJS)
 	@if [ ! -f $(NAME) ] || [ -n "$$(find $^ -newer $(NAME) 2>/dev/null)" ]; then \
