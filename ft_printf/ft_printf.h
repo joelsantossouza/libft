@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 20:30:01 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/22 19:19:25 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:32:30 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,5 @@ void	parse_precision(const char *str, va_list args, t_spec *spec,
 void	parse_length(const char *str, t_spec *spec, const char **endptr);
 int		parse_spec(const char *str, va_list args, t_spec *spec,
 			const char **endptr);
-
-int		ft_printf(const char *format, ...);
-int		ft_fprintf(int fd, const char *format, ...);
 
 #endif
