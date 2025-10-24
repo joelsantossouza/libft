@@ -278,6 +278,10 @@ if fs.exists("ft_static_ultoa_base_test") then
 	atf_test_program{name="ft_static_ultoa_base_test"}
 end
 
+if fs.exists("get_next_line_test") then
+	atf_test_program{name="get_next_line_test"}
+end
+
 if fs.exists("ft_lstnew_test") then
 	atf_test_program{name="ft_lstnew_test"}
 end
