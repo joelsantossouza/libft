@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/22 20:32:44 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/24 19:20:22 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ size_t	ft_abs(ssize_t j);
 ssize_t	ft_max(ssize_t a, ssize_t b);
 size_t	ft_static_ltoa_base(ssize_t nbr, char **sptr, const char *base);
 size_t	ft_static_ultoa_base(size_t nbr, char **sptr, const char *base);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

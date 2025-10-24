@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/10/22 19:29:01 by joesanto         ###   ########.fr        #
+#    Updated: 2025/10/24 19:20:12 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ft_strpbrk_diff.c ft_strpbrknul.c ft_strpbrknul_diff.c ft_strrpbrkend_diff.c ft_
 ft_strndup.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_strmapi.c \
 ft_substr.c ft_strjoin.c ft_strtrim.c ft_freearray.c ft_word_count.c ft_split.c ft_digit_count.c ft_nbrlen.c \
 ft_udigit_count.c ft_itoa_base.c ft_itoa.c ft_ipow.c ft_putlong_base_fd.c ft_putulong_base_fd.c ft_abs.c \
-ft_max.c ft_static_ltoa_base.c ft_static_ultoa_base.c
+ft_max.c ft_static_ltoa_base.c ft_static_ultoa_base.c ft_realloc.c
 
 BONUS=ft_lstnew.c ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 ft_lstiter.c ft_lstmap.c
