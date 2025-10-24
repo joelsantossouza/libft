@@ -6,9 +6,12 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:49:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/24 19:19:00 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/24 19:29:27 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include <stdlib.h>
 
 static size_t	ft_min(size_t n1, size_t n2)
 {
