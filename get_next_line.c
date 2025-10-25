@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:35:51 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/24 23:03:15 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/25 23:33:56 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define BUFFER_SIZE	4096
 #endif
 
-static char	end_of_file(int fd, char buffer[BUFFER_SIZE], char **ptr,
-							ssize_t *len)
+static
+char	end_of_file(int fd, char buffer[BUFFER_SIZE], char **ptr, ssize_t *len)
 {
 	ssize_t	bytes_read;
 
