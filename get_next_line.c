@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:35:51 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/25 23:43:56 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/26 10:12:54 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ ssize_t	get_next_line(char **lineptr, int fd)
 
 	len = 0;
 	*lineptr = ft_realloc(*lineptr, 0, 0);
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (-1);
 	while (!end_of_file(fd, buffer, &ptr, &len))
 	{
 		start = ptr;
