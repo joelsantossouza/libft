@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/09/30 14:07:29 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/29 10:53:49 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	test_expect(t_input tab[], int size, int flags)
 			if (!output_dst)
 				return ;
 		}
-		expected = output_dst;
+		expected = 0;
 		output = ft_memmove(output_dst, tab[size].src, tab[size].n);
 		color = expected == output ? GREEN : RED;
 

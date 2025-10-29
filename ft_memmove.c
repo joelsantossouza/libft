@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 09:08:13 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/29 10:11:04 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/29 10:52:57 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	while (n >= 8)
 	{
 		n -= 8;
-		((size_t *) pdest)[n] = ((size_t *) psrc)[n];
-		pdest -= 8;
-		psrc -= 8;
+		*(size_t *)(pdest + n) = *(size_t *)(psrc + n);
 	}
 	while (n--)
 		pdest[n] = psrc[n];
