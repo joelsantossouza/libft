@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:35:51 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/26 10:12:54 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/29 09:16:43 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ ssize_t	get_next_line(char **lineptr, int fd)
 		ptr = ft_strchrnul(start, '\n');
 		ptr += *ptr == '\n';
 		*lineptr = ft_realloc(*lineptr, len, len + (ptr - start) + 1);
+		if (!*lineptr)
+			return (-1);
 		ft_strlcpy(*lineptr + len, start, (ptr - start) + 1);
 		len += ptr - start;
 		if (*(ptr - 1) == '\n')
