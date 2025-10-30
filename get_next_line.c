@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:35:51 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/30 21:32:10 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:27:33 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 #endif
 
 static
-char	end_of_file(int fd, char buffer[BUFFER_SIZE], char **ptr, ssize_t *len)
+char	end_of_file(int fd, char **ptr, char **lineptr, ssize_t *len)
 {
-	ssize_t	bytes_read;
+	static char	buffer[BUFFER_SIZE + 1];
+	ssize_t		bytes_read;
 
-	if (!**ptr)
+	if (!*ptr || !**ptr)
 	{
 		*ptr = buffer;
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
 			*len = -1;
+			*lineptr = ft_realloc(*lineptr, 0, 0);
 			buffer[0] = 0;
 		}
 		else
@@ -39,14 +41,13 @@ char	end_of_file(int fd, char buffer[BUFFER_SIZE], char **ptr, ssize_t *len)
 
 ssize_t	get_next_line(char **lineptr, int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
-	static char	*ptr = buffer;
+	static char	*ptr;
 	const char	*start;
 	ssize_t		len;
 
 	len = 0;
 	*lineptr = ft_realloc(*lineptr, 0, 0);
-	while (!end_of_file(fd, buffer, &ptr, &len))
+	while (!end_of_file(fd, &ptr, lineptr, &len))
 	{
 		start = ptr;
 		while (*ptr && *ptr++ != '\n')
@@ -59,7 +60,5 @@ ssize_t	get_next_line(char **lineptr, int fd)
 		if (*(ptr - 1) == '\n')
 			break ;
 	}
-	if (len < 0)
-		*lineptr = ft_realloc(*lineptr, 0, 0);
 	return (len);
 }
