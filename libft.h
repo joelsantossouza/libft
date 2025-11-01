@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/24 21:08:36 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/01 23:56:37 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 ssize_t	ft_atol_base(const char *nptr, char **endptr, const char *base);
 size_t	ft_atoul_base(const char *nptr, char **endptr, const char *base);
 int		ft_atoi(const char *nptr);
+int		ft_atoh(const char *nptr, char **endptr);
 char	*ft_itoa_base(int nbr, const char *base);
 char	*ft_itoa(int n);
 
