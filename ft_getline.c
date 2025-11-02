@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:35:51 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/02 00:01:00 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:37:14 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	end_of_file(int fd, char **ptr, char **lineptr, ssize_t *len)
 	return (**ptr == 0);
 }
 
-ssize_t	get_next_line(char **lineptr, int fd)
+ssize_t	ft_getline(char **lineptr, int fd)
 {
 	static char	*ptr;
 	const char	*start;

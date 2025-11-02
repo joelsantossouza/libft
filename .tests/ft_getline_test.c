@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_test.c                               :+:      :+:    :+:   */
+/*   ft_getline_test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 18:09:36 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/24 23:16:18 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:39:38 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	test(char *tab[], int size)
 			output_line = 0;
 			expected_ret = getline(&expected_line, &temp, file1);
 			expected_ret = expected_ret >= 0 ? (ssize_t) ft_strlen(expected_line) : expected_ret;
-			output_ret = get_next_line(&output_line, fileno(file2));
+			output_ret = ft_getline(&output_line, fileno(file2));
 			color = expected_ret == output_ret && !ft_strcmp(expected_line, output_line) ? GREEN : RED;
 
 			printf("%s", color);
