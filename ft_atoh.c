@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 13:23:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/01 23:57:47 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/02 00:19:22 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	get_hex_value(char c)
 	return (-1);
 }
 
-int	ft_atoh(const char *nptr, char **endptr)
+long	ft_atoh(const char *nptr, char **endptr)
 {
 	char	sign;
 	int		value;
-	int		n;
+	long	n;
 
 	n = 0;
 	sign = 1;
