@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:49:22 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/03 17:58:50 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:18:05 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_swap(void *data1, void *data2, size_t size)
 	unsigned char	*ptr1;
 	unsigned char	*ptr2;
 
-	if (!data1 || data2)
+	if (!data1 || !data2)
 		return ;
 	ptr1 = (unsigned char *) data1;
 	ptr2 = (unsigned char *) data2;
@@ -34,6 +34,6 @@ void	ft_swap(void *data1, void *data2, size_t size)
 	{
 		*ptr1 ^= *ptr2;
 		*ptr2 ^= *ptr1;
-		*ptr1 ^= *ptr2;
+		*ptr1++ ^= *ptr2++;
 	}
 }
