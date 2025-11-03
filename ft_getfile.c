@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:27:39 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/03 09:44:57 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/03 09:52:41 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ ssize_t	ft_getfile(char **fileptr, const char *path)
 			return (close(file), -1);
 		}
 		*fileptr = ft_realloc(*fileptr, filelen, filelen + bytes_read + 1);
-		if (!fileptr)
+		if (!*fileptr)
 			return (-1);
 		*(char *) ft_mempcpy(*fileptr + filelen, buffer, bytes_read) = 0;
 		filelen += bytes_read;
