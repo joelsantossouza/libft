@@ -6,7 +6,7 @@
 #    By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/25 11:06:07 by joesanto          #+#    #+#              #
-#    Updated: 2025/11/03 18:01:27 by joesanto         ###   ########.fr        #
+#    Updated: 2025/11/17 09:25:26 by joesanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ INCLUDES+=-I. -Ift_printf
 
 AR=ar rcs
 CC=cc
-FLAGS=-Wall -Wextra -Werror -g -O3
+FLAGS=-Wall -Wextra -Werror -g -O3 -Ofast -march=native -mtune=native -fopenmp -funroll-loops
 OBJS=$(SRCS:.c=.o) $(FT_PRINTF:.c=.o)
 BONUS_OBJS=$(BONUS:.c=.o)
 HEADER=libft.h
