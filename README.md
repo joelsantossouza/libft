@@ -36,6 +36,60 @@ make bonus
 
 The project includes comprehensive tests located in `./.tests/`, built using the **atf-c** framework with **Kyua** test runner.
 
+### Dependencies
+
+Before running tests, ensure you have the required testing tools installed:
+
+**Linux (Debian/Ubuntu):**
+```bash
+sudo apt-get update
+sudo apt-get install kyua libatf-dev atf-sh
+```
+
+**Linux (Fedora/RHEL):**
+```bash
+sudo dnf install kyua atf
+```
+
+**Linux (Arch):**
+```bash
+sudo pacman -S kyua atf
+```
+
+**FreeBSD:**
+```bash
+pkg install kyua atf
+```
+
+**NetBSD (with pkgsrc):**
+```bash
+pkgin install kyua atf
+```
+
+**OpenBSD:**
+```bash
+pkg_add kyua atf
+```
+
+**macOS:**
+```bash
+brew install kyua atf
+```
+
+**Windows (WSL):**
+
+Use Windows Subsystem for Linux and follow the Linux instructions above, or:
+
+```bash
+# Using WSL with Ubuntu
+wsl --install
+# Then inside WSL:
+sudo apt-get update
+sudo apt-get install kyua atf-sh
+```
+
+> **Note:** Native Windows support is limited. WSL is the recommended approach for Windows users.
+
 ### Compiling Tests
 
 **Compile all tests:**
