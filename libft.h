@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/03 18:01:19 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:13:15 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2, void (*free1)(void*),
+			void (*free2)(void*));
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_freearray(void **array, void (*free_memb)(void *));
 size_t	ft_word_count(char const *s, char c);

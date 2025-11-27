@@ -6,14 +6,15 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:54:34 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/08 13:27:54 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:12:55 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2, void (*free1)(void*),
+			void (*free2)(void*))
 {
 	char	*join;
 	char	*pjoin;
@@ -28,5 +29,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		pjoin = ft_stpcpy(pjoin, s1);
 	if (s2)
 		pjoin = ft_stpcpy(pjoin, s2);
+	if (free1)
+		free1(s1);
+	if (free2)
+		free2(s2);
 	return (join);
 }

@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 10:31:08 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/04 17:32:01 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:19:40 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	i;
 
 typedef struct s_input
 {
-	const char	*big;
-	const char	*little;
+	char	*big;
+	char	*little;
 }	t_input;
 
 char	*strjoin(char const *s1, char const *s2)
@@ -78,7 +78,7 @@ void	test(t_input tab[], size_t size)
 	while (size--)
 	{
 		expected = strjoin(tab[size].big, tab[size].little);
-		output = ft_strjoin(tab[size].big, tab[size].little);
+		output = ft_strjoin(tab[size].big, tab[size].little, 0, 0);
 		color = !ft_strcmp(expected, output) ? GREEN : RED;
 
 		printf("%s", color);
