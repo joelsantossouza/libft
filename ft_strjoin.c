@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:54:34 by joesanto          #+#    #+#             */
-/*   Updated: 2025/11/27 20:12:55 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/11/28 11:58:35 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ char	*ft_strjoin(char *s1, char *s2, void (*free1)(void*),
 	if (!s1 && !s2)
 		return (0);
 	join = (char *) malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!join)
-		return (0);
-	pjoin = join;
-	if (s1)
-		pjoin = ft_stpcpy(pjoin, s1);
-	if (s2)
-		pjoin = ft_stpcpy(pjoin, s2);
+	if (join)
+	{
+		pjoin = join;
+		if (s1)
+			pjoin = ft_stpcpy(pjoin, s1);
+		if (s2)
+			pjoin = ft_stpcpy(pjoin, s2);
+	}
 	if (free1)
 		free1(s1);
 	if (free2)
