@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 23:23:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/12/02 23:30:06 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:15:12 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_nbrcmp(const char *nbr1, const char *nbr2)
 {
 	int	cmp;
+	int	sign;
 
 	while (*nbr1 == ' ' || (*nbr1 >= '\t' && *nbr1 <= '\r'))
 		nbr1++;
@@ -23,19 +24,17 @@ int	ft_nbrcmp(const char *nbr1, const char *nbr2)
 	cmp = (*nbr2 == '-') - (*nbr1 == '-');
 	if (cmp != 0)
 		return (cmp);
-	nbr1 += *nbr1 == '+' || *nbr1 == '-';
-	nbr2 += *nbr2 == '+' || *nbr2 == '-';
+	sign = 1 - 2 * (*nbr1 == '-');
+	nbr1 += *nbr1 == '-' || *nbr1 == '+';
+	nbr2 += *nbr2 == '-' || *nbr2 == '+';
 	while (*nbr1 == '0')
 		nbr1++;
 	while (*nbr2 == '0')
 		nbr2++;
-	while (*nbr1 == *nbr2 && *nbr1)
-	{
-		nbr1++;
-		nbr2++;
-	}
+	while (*nbr1 == *nbr2 && *nbr1 && (nbr1++, nbr2++))
+		;
 	cmp = ft_strlen(nbr1) - ft_strlen(nbr2);
 	if (cmp != 0)
-		return (cmp);
-	return (*nbr1 - *nbr2);
+		return (cmp * sign);
+	return ((*nbr1 - *nbr2) * sign);
 }
