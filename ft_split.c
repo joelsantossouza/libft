@@ -6,27 +6,27 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 19:21:58 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 12:23:46 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/12/08 01:25:29 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	**ft_split(char const *s, char c)
+ssize_t	ft_split(char ***split, char const *s, char c)
 {
 	char const	*start;
-	char		**split;
 	char		**psplit;
 	size_t		nwords;
 
 	if (!s)
-		return (0);
+		return (-1);
 	nwords = ft_word_count(s, c);
-	split = (char **) malloc(sizeof(char *) * (nwords + 1));
-	if (!split)
-		return (0);
-	psplit = split;
+	ft_freearray((void **) *split, free);
+	*split = (char **) malloc(sizeof(char *) * (nwords + 1));
+	if (!*split)
+		return (-1);
+	psplit = *split;
 	while (nwords--)
 	{
 		start = ft_strchrnul_diff(s, c);
@@ -34,10 +34,10 @@ char	**ft_split(char const *s, char c)
 		*psplit = ft_strndup(start, s - start);
 		if (!*psplit++)
 		{
-			ft_freearray((void **) split, free);
-			return (0);
+			ft_freearray((void **) *split, free);
+			return (-1);
 		}
 	}
 	*psplit = 0;
-	return (split);
+	return (psplit - *split);
 }

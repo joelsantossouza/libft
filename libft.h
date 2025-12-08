@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/12/02 23:30:25 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/12/08 01:23:39 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_strjoin(char *s1, char *s2, void (*free1)(void*),
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_freearray(void **array, void (*free_memb)(void *));
 size_t	ft_word_count(char const *s, char c);
-char	**ft_split(char const *s, char c);
+ssize_t	ft_split(char ***split, char const *s, char c);
 size_t	ft_digit_count(ssize_t nbr, unsigned int base);
 size_t	ft_nbrlen(ssize_t nbr, unsigned int base);
 size_t	ft_udigit_count(size_t nbr, unsigned int base);

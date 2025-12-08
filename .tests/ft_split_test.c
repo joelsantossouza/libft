@@ -6,10 +6,9 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 07:54:21 by joesanto          #+#    #+#             */
-/*   Updated: 2025/10/03 13:10:03 by joesanto         ###   ########.fr       */
+/*   Updated: 2025/12/08 01:31:52 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 #include <atf-c.h>
 #include <string.h>
@@ -27,6 +26,7 @@ char	*tests_titles[] = {
 	"Empty Strings",
 	"Big Strings",
 };
+
 static int	i;
 
 typedef struct s_range
@@ -34,6 +34,7 @@ typedef struct s_range
 	int	min;
 	int	max;
 }	t_range;
+
 t_range _range = {-128, 127};
 
 int	split_cmp(char **split1, char **split2)
@@ -63,7 +64,6 @@ void	print_split(char **split, char *sep)
 			printf("%s%s", sep, *split);
 	}
 	printf("\n");
-
 }
 
 static int	fill(char **vector, char const *str, char delimeter)
@@ -119,6 +119,7 @@ void	test(char	*tab[], size_t size, t_range range, int flags)
 	char	**output;
 	char	*color;
 	int		find;
+	ssize_t	result;
 
 	printf("\n<test%02d> %s\n", i, tests_titles[i]);
 	while (size--)
@@ -127,17 +128,26 @@ void	test(char	*tab[], size_t size, t_range range, int flags)
 		while (++find <= range.max)
 		{
 			expected = flags & TEST_NULLS ? 0 : split(tab[size], find);
-			output = ft_split(tab[size], find);
-			color = !split_cmp(expected, output) ? GREEN : RED;
-
+			output = NULL;
+			result = ft_split(&output, tab[size], find);
+			
+			// Check if the return value matches expected word count
+			ssize_t expected_count = expected ? (ssize_t) ft_word_count(tab[size], find) : -1;
+			int return_ok = (result == expected_count);
+			
+			color = (!split_cmp(expected, output) && return_ok) ? GREEN : RED;
 			printf("%s", color);
 			printf("Input:   \t%s\t%d\n", tab[size], find);
+			printf("Return:  \t%zd (expected: %zd)\n", result, expected_count);
 			printf("Expected:\t"); print_split(expected, ", ");
 			printf("Output:  \t"); print_split(output, ", ");
 			printf("%s", RESET);
-
-			ATF_CHECK(!split_cmp(expected, output));
+			ATF_CHECK(!split_cmp(expected, output) && return_ok);
 			printf("----------\n");
+			
+			// Free allocated memory
+			ft_freearray((void **)expected, free);
+			ft_freearray((void **)output, free);
 		}
 	}
 }
@@ -307,17 +317,15 @@ ATF_TC_BODY(test02, tc)
 		"\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0\x12\x34\x56\x78\x9a\xbc\xde\xf0",
 	};
 
-		i = 2;
-		test(tab, NELEM(tab), _range, 0);
-	}
+	i = 2;
+	test(tab, NELEM(tab), _range, 0);
+}
 
-	// TEST PROGRAM
-	ATF_TP_ADD_TCS(tp)
-	{
-		ATF_TP_ADD_TC(tp, test00);
-		ATF_TP_ADD_TC(tp, test01);
-		ATF_TP_ADD_TC(tp, test02);
-
-		return (atf_no_error());
-	}
-
+// TEST PROGRAM
+ATF_TP_ADD_TCS(tp)
+{
+	ATF_TP_ADD_TC(tp, test00);
+	ATF_TP_ADD_TC(tp, test01);
+	ATF_TP_ADD_TC(tp, test02);
+	return (atf_no_error());
+}
