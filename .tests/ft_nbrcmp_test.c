@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:34:30 by joesanto          #+#    #+#             */
-/*   Updated: 2025/12/03 11:35:53 by joesanto         ###   ########.fr       */
+/*   Updated: 2026/01/06 20:01:17 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ ATF_TC_BODY(test_equal_numbers, tc)
 {
     ATF_REQUIRE_EQ(ft_nbrcmp("42", "42"), 0);
     ATF_REQUIRE_EQ(ft_nbrcmp("0", "0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("-0", "-0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("+0", "+0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("-0", "+0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("+0", "-0"), 0);
     ATF_REQUIRE_EQ(ft_nbrcmp("123", "123"), 0);
 }
 
@@ -35,6 +39,11 @@ ATF_TC_BODY(test_with_leading_zeros, tc)
     ATF_REQUIRE_EQ(ft_nbrcmp("042", "42"), 0);
     ATF_REQUIRE_EQ(ft_nbrcmp("0000123", "123"), 0);
     ATF_REQUIRE_EQ(ft_nbrcmp("00", "0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("-00", "0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("-00", "+0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("+00", "+0"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("+000", "+0000"), 0);
+    ATF_REQUIRE_EQ(ft_nbrcmp("+000", "-0000"), 0);
 }
 
 ATF_TC(test_with_whitespace);
