@@ -6,7 +6,7 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:59:12 by joesanto          #+#    #+#             */
-/*   Updated: 2025/12/08 01:23:39 by joesanto         ###   ########.fr       */
+/*   Updated: 2026/01/28 21:45:41 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ ssize_t	ft_getline(char **lineptr, int fd);
 ssize_t	ft_getfile(char **fileptr, const char *path);
 void	ft_swap(void *data1, void *data2, size_t size);
 int		ft_nbrcmp(const char *nbr1, const char *nbr2);
+size_t	ft_buffer_ultoa(size_t nbr, size_t size, char buffer[size]);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

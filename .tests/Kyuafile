@@ -298,6 +298,10 @@ if fs.exists("ft_nbrcmp_test") then
 	atf_test_program{name="ft_nbrcmp_test"}
 end
 
+if fs.exists("ft_buffer_ultoa_test") then
+	atf_test_program{name="ft_buffer_ultoa_test"}
+end
+
 if fs.exists("ft_lstnew_test") then
 	atf_test_program{name="ft_lstnew_test"}
 end
