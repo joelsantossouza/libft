@@ -6,13 +6,13 @@
 /*   By: joesanto <joesanto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 21:09:19 by joesanto          #+#    #+#             */
-/*   Updated: 2026/01/28 21:51:15 by joesanto         ###   ########.fr       */
+/*   Updated: 2026/01/28 21:53:52 by joesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define	DECIMAL_BASE	10
+#define DECIMAL_BASE	10
 
 size_t	ft_buffer_ultoa(size_t nbr, size_t size, char buffer[size])
 {
